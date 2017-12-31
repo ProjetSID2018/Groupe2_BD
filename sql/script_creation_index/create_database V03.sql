@@ -118,7 +118,7 @@ CREATE TABLE pos_tagging(
 # Table: position
 #------------------------------------------------------------
 
-CREATE TABLE position(
+CREATE TABLE position_mot(
         id_position int (11) Auto_increment  NOT NULL ,
         position    Int NOT NULL ,
         titre       Bool NOT NULL ,
@@ -144,9 +144,9 @@ ALTER TABLE article ADD CONSTRAINT FK_article_id_journal FOREIGN KEY (id_journal
 ALTER TABLE article ADD CONSTRAINT FK_article_id_classe FOREIGN KEY (id_classe) REFERENCES classification(id_classe);
 ALTER TABLE article ADD CONSTRAINT FK_article_id_positivite FOREIGN KEY (id_positivite) REFERENCES positivite(id_positivite);
 ALTER TABLE mot_racine ADD CONSTRAINT FK_mot_racine_id_mot FOREIGN KEY (id_mot) REFERENCES mot(id_mot);
-ALTER TABLE position ADD CONSTRAINT FK_position_id_racine FOREIGN KEY (id_racine) REFERENCES mot_racine(id_racine);
-ALTER TABLE position ADD CONSTRAINT FK_position_id_entite FOREIGN KEY (id_entite) REFERENCES entite(id_entite);
-ALTER TABLE position ADD CONSTRAINT FK_position_id_pos_tag FOREIGN KEY (id_pos_tag) REFERENCES pos_tagging(id_pos_tag);
-ALTER TABLE position ADD CONSTRAINT FK_position_id_article FOREIGN KEY (id_article) REFERENCES article(id_article);
+ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_racine FOREIGN KEY (id_racine) REFERENCES mot_racine(id_racine);
+ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_entite FOREIGN KEY (id_entite) REFERENCES entite(id_entite);
+ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_pos_tag FOREIGN KEY (id_pos_tag) REFERENCES pos_tagging(id_pos_tag);
+ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_article FOREIGN KEY (id_article) REFERENCES article(id_article);
 ALTER TABLE ecrit ADD CONSTRAINT FK_ecrit_id_article FOREIGN KEY (id_article) REFERENCES article(id_article);
 ALTER TABLE ecrit ADD CONSTRAINT FK_ecrit_id_auteur FOREIGN KEY (id_auteur) REFERENCES auteur(id_auteur);

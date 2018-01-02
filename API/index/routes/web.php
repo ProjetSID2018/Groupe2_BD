@@ -11,12 +11,14 @@
 |
 */
 
-Route::get('/hello', function () {
+/*
+Route::get('/hello/{name}', function () {
     #return view('welcome');
-    return response('hello world', 200);
+    return response('hello', 200);
 });
 
-Route::get('/test', function () {
-    #return view('welcome');
-    return 'test world';
-});
+*/
+
+
+Route::get('hello/{name}', 'hello@index');
+

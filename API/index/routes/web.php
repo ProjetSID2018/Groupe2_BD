@@ -20,5 +20,7 @@ Route::get('/hello/{name}', function () {
 */
 
 
-Route::get('hello/{name}', 'hello@index');
+Route::get('Entite/{VENTITE}', 'Entite@create');
+
+Route::get('Journal/{VJOURNAL}', 'Journal@create');
 

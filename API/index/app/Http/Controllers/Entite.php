@@ -24,8 +24,7 @@ class Entite extends Controller
      */
     public function create($VENTITE)
     {
-        $results = DB::select('CALL PENTITE(?)',array($VENTITE));
-        return(response('',200));
+        //
     }
 
     /**
@@ -35,8 +34,10 @@ class Entite extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $VENTITE = $request->input('VENTITE');
+        $results = DB::select('CALL PENTITE(?)',array($VENTITE));
+        return(response('',200));
     }
 
     /**

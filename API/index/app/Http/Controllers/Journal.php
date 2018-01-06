@@ -25,8 +25,7 @@ class Journal extends Controller
      */
     public function create($VJOURNAL)
     {
-        $results = DB::select('CALL PJOURNAL(?)',array($VJOURNAL));
-        return(response('',200));
+        //
     }
 
     /**
@@ -36,8 +35,10 @@ class Journal extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $VJOURNAL = $request->input('nomJournal');
+        $results = DB::select('CALL PJOURNAL(?)',array($VJOURNAL));
+        return(response('',200));
     }
 
     /**

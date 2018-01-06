@@ -20,7 +20,6 @@ Route::get('/hello/{name}', function () {
 */
 
 
-Route::get('Entite/{VENTITE}', 'Entite@create');
+Route::post('Entite', 'Entite@store');
 
-Route::get('Journal/{VJOURNAL}', 'Journal@create');
-
+Route::post('Journal', 'Journal@store');

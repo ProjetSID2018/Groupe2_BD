@@ -23,7 +23,7 @@ class Journal extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($VJOURNAL)
+    public function create()
     {
         //
     }

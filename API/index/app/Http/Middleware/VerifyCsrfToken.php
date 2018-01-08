@@ -12,6 +12,8 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+    	// To do : delete 'Entite' and find a solution for csrf token
+        'Entite',
+        'Journal'
     ];
 }

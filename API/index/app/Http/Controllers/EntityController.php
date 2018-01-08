@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\JsonMapper\JsonMapper;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 
-
-class Journal extends Controller
+class EntityController extends Controller
 {
+
+   private $json_mapper;
+
+    public function __construct()
+    {
+        $this->middleware('web');
+        $this->json_mapper = new JsonMapper();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +25,7 @@ class Journal extends Controller
     public function index()
     {
         //
+        return(response('',200));
     }
 
     /**
@@ -26,6 +36,7 @@ class Journal extends Controller
     public function create()
     {
         //
+        return(response('',200));
     }
 
     /**
@@ -35,9 +46,14 @@ class Journal extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $VJOURNAL = $request->input('nomJournal');
-        $results = DB::select('CALL PJOURNAL(?)',array($VJOURNAL));
+    {
+        //$data = $this->json_mapper->json_mapper($request);
+        //print($data;
+
+        //print("coucou");
+        $VENTITE = $request->input('entite');
+        $results = DB::select('CALL PENTITE(?)',array($VENTITE));
+        //DB::select('CALL PENTITE(?)',$data);
         return(response('',200));
     }
 
@@ -50,6 +66,7 @@ class Journal extends Controller
     public function show($id)
     {
         //
+        return(response('',200));
     }
 
     /**
@@ -61,6 +78,7 @@ class Journal extends Controller
     public function edit($id)
     {
         //
+        return(response('',200));
     }
 
     /**
@@ -72,7 +90,10 @@ class Journal extends Controller
      */
     public function update(Request $request, $id)
     {
+        $data = $this->json_mapper->json_mapper($request);
+
         //
+        return(response('',200));
     }
 
     /**
@@ -84,5 +105,6 @@ class Journal extends Controller
     public function destroy($id)
     {
         //
+        return(response('',200));
     }
 }

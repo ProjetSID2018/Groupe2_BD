@@ -20,7 +20,7 @@ class EntityRepository
             DB::table('entite')->insert(['id_entite' => null, 'type_entite' => $data['entite']]);
             $entity_message['message'] = "L'ajout a pu se faire";
             $entity_message['code'] =  200;
-
+            return $entity_message;
         } catch (\PDOException $e) {
             // Get the pdo exception message
             $entity_message['message'] = $e->getMessage();
@@ -32,5 +32,4 @@ class EntityRepository
             return $entity_message;
         }
     }
-
 }

@@ -20,6 +20,9 @@ Route::get('/hello/{name}', function () {
 */
 
 
-Route::post('Entite', 'Entite@store');
+use Illuminate\Support\Facades\Route;
 
-Route::post('Journal', 'Journal@store');
+
+Route::post('Entite', ['uses', 'uses' => 'Entite@store']);
+
+Route::post('Journal', ['uses', 'uses' => 'Journal@store']);

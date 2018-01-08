@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Http\JsonMapper\JsonMapper;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class Entite extends Controller
 {
+
+    private $json_mapper;
+
+    public function __construct(JsonMapper $json_mapper)
+    {
+        $this->json_mapper = $json_mapper;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +25,7 @@ class Entite extends Controller
     public function index()
     {
         //
+        return(response('',200));
     }
 
     /**
@@ -25,6 +36,7 @@ class Entite extends Controller
     public function create()
     {
         //
+        return(response('',200));
     }
 
     /**
@@ -34,9 +46,14 @@ class Entite extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
+        //$entite = $this->json_mapper->json_mapper($request);
+        //print($entite);
+
+        print("coucou");
         $VENTITE = $request->input('entite');
         $results = DB::select('CALL PENTITE(?)',array($VENTITE));
+        //DB::select('CALL PENTITE(?)',$entite);
         return(response('',200));
     }
 
@@ -49,6 +66,7 @@ class Entite extends Controller
     public function show($id)
     {
         //
+        return(response('',200));
     }
 
     /**
@@ -60,6 +78,7 @@ class Entite extends Controller
     public function edit($id)
     {
         //
+        return(response('',200));
     }
 
     /**
@@ -72,6 +91,7 @@ class Entite extends Controller
     public function update(Request $request, $id)
     {
         //
+        return(response('',200));
     }
 
     /**
@@ -83,5 +103,6 @@ class Entite extends Controller
     public function destroy($id)
     {
         //
+        return(response('',200));
     }
 }

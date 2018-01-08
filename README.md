@@ -15,3 +15,7 @@ Travail spécifique au groupe 2 :
 - Gérer l’évolution du schéma (nouveaux Use Cases et gestion des logs)  
 - Implémenter une API REST (dans le langage décidé dans le travail préliminaire) pour
 permettre l’insertion de données envoyées par les groupes 5, 6 et 7  
+
+Nous testons le commit puis le push.
+
+TESt2

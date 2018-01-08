@@ -49,11 +49,13 @@ class EntityController extends Controller
      */
     public function store(Request $request)
     {
+        // Parse automatically the json sent by client
         $data = $this->json_mapper->json_mapper($request->all());
 
+        // Get the response from entity_service's associated method
         $response = $this->entity_service->store($data);
-        //$VENTITE = $request->input('entite');
-        //$results = DB::select('CALL PENTITE(?)',array($VENTITE));
+
+        // Send to client the message and the status code
         return(response($response['message'],$response['code']));
     }
 

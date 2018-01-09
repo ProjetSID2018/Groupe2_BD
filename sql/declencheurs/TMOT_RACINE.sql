@@ -1,0 +1,10 @@
+DELIMITER |
+CREATE TRIGGER TMOT_RACINE BEFORE INSERT
+ON MOT_RACINE FOR EACH ROW
+BEGIN
+    IF id_racine IS  NULL   
+      THEN
+        SELECT'La clé ne doit pas etre nulle' ;
+    END IF;
+END |
+DELIMITER ;

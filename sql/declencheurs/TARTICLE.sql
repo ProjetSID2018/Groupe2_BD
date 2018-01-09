@@ -1,0 +1,10 @@
+DELIMITER |
+CREATE TRIGGER TARTICLE BEFORE INSERT
+ON ARTICLE FOR EACH ROW
+BEGIN
+    IF id_article IS  NULL   
+      THEN
+        SELECT'La clé ne doit pas etre nulle' ;
+    END IF;
+END |
+DELIMITER ;

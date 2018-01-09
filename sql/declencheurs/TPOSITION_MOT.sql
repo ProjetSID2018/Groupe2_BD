@@ -1,0 +1,10 @@
+DELIMITER |
+CREATE TRIGGER TPOSITION_MOT BEFORE INSERT
+ON POSITION_MOT FOR EACH ROW
+BEGIN
+    IF id_position IS  NULL   
+      THEN
+        SELECT'La clé ne doit pas etre nulle' ;
+    END IF;
+END |
+DELIMITER ;

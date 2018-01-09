@@ -16,13 +16,8 @@ class PosTaggingRepository
     /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
-            // Store in DB the data given  (without using procedure)
-            /*DB::table('pos_tagging')->insert([
-                'id_pos_tag' => null,
-                'pos_tag' => $data['pos_tag']
-            ]);*/
-
-            DB::select('CALL PPOSTTAGGING(?)',array(
+            // Store in DB the data given
+            DB::select('CALL PPOSTAGGING(?)',array(
                 $data['pos_tag'],
             ));
 

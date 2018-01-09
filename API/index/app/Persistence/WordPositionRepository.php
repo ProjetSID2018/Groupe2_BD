@@ -16,19 +16,19 @@ class WordPositionRepository
     /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
-            // Store in DB the data given  (without using procedure)
-            DB::table('position_mot')->insert([
-                "position" => $data['position'],
-                "titre" => $data['titre'],
-                "id_mot"=> $data['id_mot'],
-                "id_identite"=> $data['id_identite'],
-                "id_pos_tag" => $data['id_pos_tag'],
-                "id_article"=> $data['id_article'],
-                "id_synonyme"=> $data['id_synonyme'],
-                "id_wiki"=> $data['id_wiki']
-            ]);
+            // Store in DB the data given
+            DB::select('CALL PPOSITIONMOT(?,?,?,?,?,?,?,?)',array(
+                $data['position'],
+                $data['titre'],
+                $data['id_mot'],
+                $data['id_entite'],
+                $data['id_pos_tag'],
+                $data['id_article'],
+                $data['id_synonyme'],
+                $data['id_wiki'],
+            ));
 
-            $this->word_position_message['message'] = "L'ajout a pu se faire";
+            $this->word_position_message['message'] = "";
             $this->word_position_message['code'] =  201;
 
             return $this->word_position_message;

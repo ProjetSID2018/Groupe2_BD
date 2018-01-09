@@ -19,12 +19,7 @@ class WrittenRepository
     /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
-            // Store in DB the data given  (without using procedure)
-            /*DB::table('ecrit')->insert([
-                'id_article' => $data['id_article'],
-                'id_auteur' => $data['id_auteur']
-            ]);*/
-
+            // Store in DB the data given
             DB::select('CALL PECRIT(?,?)',array(
                 $data['id_auteur'],
                 $data['id_article'],

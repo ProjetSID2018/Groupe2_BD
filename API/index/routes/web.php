@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,15 +13,12 @@
 |
 */
 
-/*
-Route::get('/hello/{name}', function () {
-    #return view('welcome');
-    return response('hello', 200);
-});
-
-*/
-
-
+// Entity's routes
 Route::post('entity', 'EntityController@store');
 
+// Newspaper's routes
 Route::post('newspaper', 'NewspaperController@store');
+
+
+// Author's routes
+Route::post('author', 'AuthorController@store');

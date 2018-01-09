@@ -23,4 +23,5 @@ class EntityService
 
         return $this->entity_repository->store($data);
     }
+
 }

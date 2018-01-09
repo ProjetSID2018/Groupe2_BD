@@ -43,6 +43,9 @@ Route::post('classification', 'ClassificationController@store');
 // Pos_Tagging's routes
 Route::post('postagging', 'PosTaggingController@store');
 
+// Belong's routes
+Route::post('belong', 'BelongController@store');
+
 // Written's routes
 Route::post('written', 'WrittenController@store');
 

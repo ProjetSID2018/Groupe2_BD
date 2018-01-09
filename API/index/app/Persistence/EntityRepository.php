@@ -16,8 +16,8 @@ class EntityRepository
      /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
-            // Store in DB the data given  (without using procedure)
-            DB::table('entite')->insert(['id_entite' => null, 'type_entite' => $data['type_entite']]);
+            // Store in DB the data given
+            DB::select('CALL PENTITE(?)',array($data['type_entite']));
 
             $this->entity_message['message'] = "L'ajout a pu se faire";
             $this->entity_message['code'] =  201;

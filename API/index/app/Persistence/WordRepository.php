@@ -16,7 +16,7 @@ class WordRepository extends Repository
             // Store in DB the data given
             DB::select('CALL PWORD(?,?,@id_word)',array(
                 $data['word'],
-                $data['lemme'],
+                $data['lemma'],
             ));
 
             // Get the output variable from the procedure

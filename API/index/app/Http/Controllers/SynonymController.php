@@ -13,7 +13,7 @@ use App\Http\JsonMapper\JsonMapper;
 use App\Services\SynonymService;
 use Illuminate\Http\Request;
 
-class SynonymController
+class SynonymController extends Controller
 {
 
     private $json_mapper;

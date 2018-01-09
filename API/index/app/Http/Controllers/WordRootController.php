@@ -13,7 +13,7 @@ use App\Http\JsonMapper\JsonMapper;
 use App\Services\WordRootService;
 use Illuminate\Http\Request;
 
-class WordRootController
+class WordRootController extends Controller
 {
 
     private $json_mapper;

@@ -13,7 +13,7 @@ use App\Http\JsonMapper\JsonMapper;
 use App\Services\PosTaggingService;
 use Illuminate\Http\Request;
 
-class PosTaggingController
+class PosTaggingController extends Controller
 {
 
     private $json_mapper;

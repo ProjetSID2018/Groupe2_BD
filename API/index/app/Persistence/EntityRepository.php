@@ -20,17 +20,13 @@ class EntityRepository
             DB::table('entite')->insert(['id_entite' => null, 'type_entite' => $data['type_entite']]);
 
             $this->entity_message['message'] = "L'ajout a pu se faire";
-            $this->entity_message['code'] =  200;
+            $this->entity_message['code'] =  201;
 
             return $this->entity_message;
         } catch (\PDOException $e) {
             // Get the pdo exception message
             $this->entity_message['message'] = $e->getMessage();
-            if ($e->getCode() == 23000) {
-                // Code 23000 = ER_DUP_ENTRY (duplicate value)
-                // 409 status code means CONFLICT
-                $this->entity_message['code'] = 409;
-            }
+            $this->entity_message['code'] =  500;
             return $this->entity_message;
         }
     }

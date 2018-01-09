@@ -13,7 +13,7 @@ use App\Http\JsonMapper\JsonMapper;
 use App\Services\ClassificationService;
 use Illuminate\Http\Request;
 
-class ClassificationController
+class ClassificationController extends Controller
 {
     private $json_mapper;
     private $classification_service;

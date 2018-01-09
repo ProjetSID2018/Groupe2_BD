@@ -16,20 +16,22 @@ class NewspaperRepository
     public function store($data) {
         try {
             // Store in DB the data given  (without using procedure)
-            DB::table('journal')->insert(['id_journal' => null, 'nom_journal' => $data['nom_journal']]);
+            DB::table('journal')->insert([
+                'id_journal' => null,
+                'nom_journal' => $data['nom_journal'],
+                'lien_journal' => $data['lien_journal'],
+                'lien_logo' =>$data['lien_logo']
+            ]);
 
             $this->newspaper_message['message'] = "L'ajout a pu se faire";
-            $this->newspaper_message['code'] =  200;
+            $this->newspaper_message['code'] =  201;
 
             return $this->newspaper_message;
         } catch (\PDOException $e) {
             // Get the pdo exception message
             $this->newspaper_message['message'] = $e->getMessage();
-            if ($e->getCode() == 23000) {
-                // Code 23000 = ER_DUP_ENTRY (duplicate value)
-                // 409 status code means CONFLICT
-                $this->newspaper_message['code'] = 409;
-            }
+            $this->newspaper_message['code'] =  500;
+
             return $this->newspaper_message;
         }
     }

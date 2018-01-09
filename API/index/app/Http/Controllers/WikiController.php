@@ -13,7 +13,7 @@ use App\Http\JsonMapper\JsonMapper;
 use App\Services\WikiService;
 use Illuminate\Http\Request;
 
-class WikiController
+class WikiController extends Controller
 {
     private $json_mapper;
     private $wiki_service;

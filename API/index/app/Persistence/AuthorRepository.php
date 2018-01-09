@@ -24,18 +24,15 @@ class AuthorRepository
             ]);
 
             $this->author_message['message'] = "L'ajout a pu se faire";
-            $this->author_message['code'] =  200;
+            $this->author_message['code'] =  201;
 
             return $this->author_message;
 
         } catch (\PDOException $e) {
             // Get the pdo exception message
             $this->author_message['message'] = $e->getMessage();
-            if ($e->getCode() == 23000) {
-                // Code 23000 = ER_DUP_ENTRY (duplicate value)
-                // 409 status code means CONFLICT
-                $this->author_message['code'] = 409;
-            }
+            $this->author_message['code'] =  500;
+
             return $this->author_message;
         }
     }

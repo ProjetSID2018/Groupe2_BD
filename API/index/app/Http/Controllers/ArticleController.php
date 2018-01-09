@@ -13,7 +13,7 @@ use App\Http\JsonMapper\JsonMapper;
 use App\Services\ArticleService;
 use Illuminate\Http\Request;
 
-class ArticleController
+class ArticleController extends Controller
 {
 
     private $json_mapper;

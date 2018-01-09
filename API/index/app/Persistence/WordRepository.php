@@ -19,22 +19,20 @@ class WordRepository
             // Store in DB the data given  (without using procedure)
             DB::table('mot')->insert([
                 'id_mot' => null,
+                'id_racine' => $data['id_racine'],
                 'mot' => $data['mot'],
             ]);
 
             $this->word_message['message'] = "L'ajout a pu se faire";
-            $this->word_message['code'] =  200;
+            $this->word_message['code'] =  201;
 
             return $this->word_message;
 
         } catch (\PDOException $e) {
             // Get the pdo exception message
             $this->word_message['message'] = $e->getMessage();
-            if ($e->getCode() == 23000) {
-                // Code 23000 = ER_DUP_ENTRY (duplicate value)
-                // 409 status code means CONFLICT
-                $this->word_message['code'] = 409;
-            }
+            $this->word_message['code'] =  500;
+
             return $this->word_message;
         }
     }

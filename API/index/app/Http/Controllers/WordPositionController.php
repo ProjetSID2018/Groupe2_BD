@@ -13,7 +13,7 @@ use App\Http\JsonMapper\JsonMapper;
 use App\Services\WordPositionService;
 use Illuminate\Http\Request;
 
-class WordPositionController
+class WordPositionController extends Controller
 {
     private $json_mapper;
     private $word_position_service;

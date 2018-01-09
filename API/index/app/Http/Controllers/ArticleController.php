@@ -17,7 +17,7 @@ class ArticleController extends Controller
 {
 
     private $json_mapper;
-    private $pos_tagging_service;
+    private $article_service;
 
     public function __construct()
     {
@@ -37,7 +37,7 @@ class ArticleController extends Controller
         $data = $this->json_mapper->json_mapper($request->all());
 
         // Get the response from entity_service's associated method
-        $response = $this->pos_tagging_service->store($data);
+        $response = $this->article_service->store($data);
 
         // Send to client the message and the status code
         return(response($response['message'],$response['code']));

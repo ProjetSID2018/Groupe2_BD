@@ -35,12 +35,16 @@ Route::post('wordposition', 'WordPositionController@store');
 Route::post('synonym', 'SynonymController@store');
 
 // Wiki's routes
+Route::post('wiki', 'WikiController@store');
 
 // Classification's routes
+Route::post('classification', 'ClassificationController@store');
 
 // Pos_Tagging's routes
+Route::post('postagging', 'PosTaggingController@store');
 
 // Written's routes
+Route::post('written', 'WrittenController@store');
 
 // Article's routes
-
+Route::post('article', 'ArticleController@store');

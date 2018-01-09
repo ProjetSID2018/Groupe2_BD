@@ -6,20 +6,20 @@
  * Time: 18:10
  */
 namespace App\Services;
-use App\Persistence\SynonymRepository;
+use App\Persistence\PosTaggingRepository;
 
 class PosTaggingService
 {
 
-    private $synonym_repository;
+    private $post_tagging_repository;
     public function __construct()
     {
-        $this->synonym_repository = new SynonymRepository();
+        $this->post_tagging_repository = new PosTaggingRepository();
     }
 
     public function store($data) {
         // Need validation steps for the data
 
-        return $this->synonym_repository->store($data);
+        return $this->post_tagging_repository->store($data);
     }
 }

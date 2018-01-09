@@ -31,7 +31,7 @@ class PosTaggingRepository
             $this->post_tagging_message['code'] =  500;
 
             return $this->post_tagging_message;
-            
+
         }
     }
 }

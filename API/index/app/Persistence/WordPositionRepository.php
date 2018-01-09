@@ -32,7 +32,6 @@ class WordPositionRepository
             $this->word_position_message['code'] =  201;
 
             return $this->word_position_message;
-
         } catch (\PDOException $e) {
             // Get the pdo exception message
             $this->word_position_message['message'] = $e->getMessage();

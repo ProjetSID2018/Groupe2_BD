@@ -1,4 +1,3 @@
-#------------------------------------------------------------
 #        Script MySQL.
 #------------------------------------------------------------
 
@@ -110,7 +109,7 @@ CREATE TABLE pos_tagging(
 CREATE TABLE position(
         id_position int (11) Auto_increment  NOT NULL ,
         position    Int NOT NULL ,
-        titre       Bool NOT NULL ,
+        titre       Boolean NOT NULL ,
         id_mot      Int NOT NULL ,
         id_entite   Int NOT NULL ,
         id_pos_tag  Int NOT NULL ,
@@ -125,7 +124,7 @@ CREATE TABLE position(
 #------------------------------------------------------------
 
 CREATE TABLE synonyme(
-        id_synonyme Int NOT NULL ,
+        id_synonyme int (11) Auto_increment  NOT NULL ,
         synonyme    Varchar (50) NOT NULL ,
         PRIMARY KEY (id_synonyme ) ,
         UNIQUE (synonyme )

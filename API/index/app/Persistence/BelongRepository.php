@@ -9,33 +9,30 @@
 namespace App\Persistence;
 
 
+use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class BelongRepository
+class BelongRepository extends Repository
 {
-
-    private $belong_message = array();
-
-    /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
             // Store in DB the data given
-            DB::select('CALL PAPPARTIENT(?,?)',array(
+            DB::select('CALL PBELONG(?,?)',array(
                 $data['id_article'],
-                $data['id_classe'],
+                $data['id_class'],
             ));
 
-            $this->classification_message['message'] = "";
-            $this->belong_message['code'] =  201;
+            $this->response['message'] = "";
+            $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
-            return $this->belong_message;
+            return $this->response;
 
         } catch (\PDOException $e) {
             // Get the pdo exception message
-            $this->belong_message['message'] = $e->getMessage();
-            $this->belong_message['code'] =  500;
+            $this->response['message'] = $e->getMessage();
+            $this->response['code'] =  Repository::$INTERNAL_ERROR;
 
-            return $this->belong_message;
+            return $this->response;
         }
     }
 }

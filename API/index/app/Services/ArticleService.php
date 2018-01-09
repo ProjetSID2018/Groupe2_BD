@@ -6,11 +6,11 @@
  * Time: 18:09
  */
 namespace App\Services;
+
 use App\Persistence\ArticleRepository;
 
 class ArticleService
 {
-
     private $article_repository;
     public function __construct()
     {

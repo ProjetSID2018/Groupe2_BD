@@ -6,44 +6,41 @@
  * Time: 18:05
  */
 namespace App\Persistence;
+use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class ArticleRepository
+class ArticleRepository extends Repository
 {
-
-    private $article_message = array();
-
-    /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
             // Store in DB the data given
             DB::select('CALL PARTICLE(?,?,?,?,?,?,?,?,?,?,@id_article)',array(
                 $data['date_publication'],
-                $data['taux_positivite'],
-                $data['taux_negativite'],
-                $data['taux_joie'],
-                $data['taux_peur'],
-                $data['taux_tristesse'],
-                $data['taux_colere'],
-                $data['taux_surprise'],
-                $data['taux_degout'],
-                $data['id_journal'],
+                $data['rate_positivity'],
+                $data['rate_negativity'],
+                $data['rate_joy'],
+                $data['rate_fear'],
+                $data['rate_sadness'],
+                $data['rate_angry'],
+                $data['rate_surprise'],
+                $data['rate_disgust'],
+                $data['id_newspaper'],
             ));
 
             // Get the output variable from the procedure
             $results = DB::select('Select @id_article as id_article');
 
             // Sent the id_article in json format to client
-            $this->article_message['message'] = json_encode(['id_article' =>$results[0]->id_article]);
-            $this->article_message['code'] =  201;
+            $this->response['message'] = json_encode(['id_article' =>$results[0]->id_article]);
+            $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
-            return $this->article_message;
+            return $this->response;
         } catch (\PDOException $e) {
             // Get the pdo exception message
-            $this->article_message['message'] = $e->getMessage();
-            $this->article_message['code'] =  500;
+            $this->response['message'] = $e->getMessage();
+            $this->response['code'] =  Repository::$INTERNAL_ERROR;
 
-            return $this->article_message;
+            return $this->response;
         }
     }
 }

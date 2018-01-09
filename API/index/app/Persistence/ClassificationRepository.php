@@ -6,32 +6,29 @@
  * Time: 18:06
  */
 namespace App\Persistence;
+use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class ClassificationRepository
+class ClassificationRepository extends Repository
 {
-
-    private $classification_message = array();
-
-    /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
             // Store in DB the data given
             DB::select('CALL PCLASSIFICATION(?)',array(
-                $data['classe']
+                $data['class']
             ));
 
-            $this->classification_message['message'] = "";
-            $this->classification_message['code'] =  201;
+            $this->response['message'] = "";
+            $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
-            return $this->classification_message;
+            return $this->response;
 
         } catch (\PDOException $e) {
             // Get the pdo exception message
-            $this->classification_message['message'] = $e->getMessage();
-            $this->classification_message['code'] =  500;
+            $this->response['message'] = $e->getMessage();
+            $this->response['code'] =  Repository::$INTERNAL_ERROR;
 
-            return $this->classification_message;
+            return $this->response;
         }
     }
 }

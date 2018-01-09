@@ -6,11 +6,11 @@
  * Time: 18:09
  */
 namespace App\Services;
+
 use App\Persistence\ClassificationRepository;
 
 class ClassificationService
 {
-
     private $classification_repository;
     public function __construct()
     {

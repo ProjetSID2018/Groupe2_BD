@@ -10,10 +10,10 @@ namespace App\Http\Controllers;
 
 
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\WordPositionService;
+use App\Services\PositionWordService;
 use Illuminate\Http\Request;
 
-class WordPositionController extends Controller
+class PositionWordController extends Controller
 {
     private $json_mapper;
     private $word_position_service;
@@ -21,7 +21,7 @@ class WordPositionController extends Controller
     public function __construct()
     {
         $this->json_mapper = new JsonMapper();
-        $this->word_position_service = new WordPositionService();
+        $this->word_position_service = new PositionWordService();
     }
 
     /**

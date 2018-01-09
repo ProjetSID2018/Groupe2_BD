@@ -6,37 +6,34 @@
  * Time: 18:08
  */
 namespace App\Persistence;
+use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class WordRepository
+class WordRepository extends Repository
 {
-
-    private $word_message = array();
-
-    /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
             // Store in DB the data given
-            DB::select('CALL PMOT(?,?,@id_mot)',array(
-                $data['mot'],
-                $data['mot_racine'],
+            DB::select('CALL PWORD(?,?,@id_word)',array(
+                $data['word'],
+                $data['lemme'],
             ));
 
             // Get the output variable from the procedure
-            $results = DB::select('Select @id_mot as id_mot');
+            $results = DB::select('Select @id_word as id_word');
 
-            // Sent the id_article in json format to client
-            $this->word_message['message'] = json_encode(['id_mot' =>$results[0]->id_mot]);
-            $this->word_message['code'] =  201;
+            // Sent the id_word in json format to client
+            $this->response['message'] = json_encode(['id_word' =>$results[0]->id_word]);
+            $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
-            return $this->word_message;
+            return $this->response;
 
         } catch (\PDOException $e) {
             // Get the pdo exception message
-            $this->word_message['message'] = $e->getMessage();
-            $this->word_message['code'] =  500;
+            $this->response['message'] = $e->getMessage();
+            $this->response['code'] =  Repository::$INTERNAL_ERROR;
 
-            return $this->word_message;
+            return $this->response;
         }
     }
 }

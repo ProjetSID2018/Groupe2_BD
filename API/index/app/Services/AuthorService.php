@@ -6,11 +6,11 @@
  * Time: 18:09
  */
 namespace App\Services;
+
 use App\Persistence\AuthorRepository;
 
 class AuthorService
 {
-
     private $author_repository;
     public function __construct()
     {

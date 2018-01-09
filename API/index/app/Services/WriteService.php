@@ -5,19 +5,16 @@
  * Date: 09/01/2018
  * Time: 10:47
  */
-
 namespace App\Services;
 
+use App\Persistence\WriteRepository;
 
-use App\Persistence\WrittenRepository;
-
-class WrittenService
+class WriteService
 {
-
     private $written_repository;
     public function __construct()
     {
-        $this->written_repository = new WrittenRepository();
+        $this->written_repository = new WriteRepository();
     }
 
     public function store($data) {

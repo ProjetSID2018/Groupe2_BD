@@ -10,10 +10,10 @@ namespace App\Http\Controllers;
 
 
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\WrittenService;
+use App\Services\WriteService;
 use Illuminate\Http\Request;
 
-class WrittenController extends Controller
+class WriteController extends Controller
 {
 
     private $json_mapper;
@@ -22,7 +22,7 @@ class WrittenController extends Controller
     public function __construct()
     {
         $this->json_mapper = new JsonMapper();
-        $this->written_service = new WrittenService();
+        $this->written_service = new WriteService();
     }
 
     /**

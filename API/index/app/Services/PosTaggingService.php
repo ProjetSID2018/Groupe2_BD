@@ -6,11 +6,11 @@
  * Time: 18:10
  */
 namespace App\Services;
+
 use App\Persistence\PosTaggingRepository;
 
 class PosTaggingService
 {
-
     private $post_tagging_repository;
     public function __construct()
     {

@@ -5,15 +5,12 @@
  * Date: 09/01/2018
  * Time: 14:40
  */
-
 namespace App\Services;
-
 
 use App\Persistence\BelongRepository;
 
 class BelongService
 {
-
     private $belong_repository;
     public function __construct()
     {

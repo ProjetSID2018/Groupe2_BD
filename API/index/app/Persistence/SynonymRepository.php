@@ -6,31 +6,28 @@
  * Time: 18:08
  */
 namespace App\Persistence;
+use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class SynonymRepository
+class SynonymRepository extends Repository
 {
-
-    private $synonym_message = array();
-
-    /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
             // Store in DB the data given  (without using procedure)
-            DB::select('CALL PSYNONYME(?)',array(
-                $data['synonyme'],
+            DB::select('CALL PSYNONYM(?)',array(
+                $data['synonym'],
             ));
 
-            $this->synonym_message['message'] = "";
-            $this->synonym_message['code'] =  201;
+            $this->response['message'] = "";
+            $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
-            return $this->synonym_message;
+            return $this->response;
         } catch (\PDOException $e) {
             // Get the pdo exception message
-            $this->synonym_message['message'] = $e->getMessage();
-            $this->synonym_message['code'] =  500;
+            $this->response['message'] = $e->getMessage();
+            $this->response['code'] =  Repository::$INTERNAL_ERROR;
 
-            return $this->synonym_message;
+            return $this->response;
         }
     }
 }

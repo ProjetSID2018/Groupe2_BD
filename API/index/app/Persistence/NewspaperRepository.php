@@ -6,32 +6,30 @@
  * Time: 18:07
  */
 namespace App\Persistence;
+use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class NewspaperRepository
+class NewspaperRepository extends Repository
 {
-    private $newspaper_message = array();
-
-    /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
             // Store in DB the data given
-            DB::select('CALL PJOURNAL(?,?,?)',array(
-                $data['nom_journal'],
-                $data['lien_journal'],
-                $data['lien_logo']
+            DB::select('CALL PNEWSPAPER(?,?,?)',array(
+                $data['name_newspaper'],
+                $data['link_newspaper'],
+                $data['link_logo']
             ));
 
-            $this->newspaper_message['message'] = "";
-            $this->newspaper_message['code'] =  201;
+            $this->response['message'] = "";
+            $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
-            return $this->newspaper_message;
+            return $this->response;
         } catch (\PDOException $e) {
             // Get the pdo exception message
-            $this->newspaper_message['message'] = $e->getMessage();
-            $this->newspaper_message['code'] =  500;
+            $this->response['message'] = $e->getMessage();
+            $this->response['code'] =  Repository::$INTERNAL_ERROR;
 
-            return $this->newspaper_message;
+            return $this->response;
         }
     }
 }

@@ -6,20 +6,20 @@
  * Time: 18:10
  */
 namespace App\Services;
-use App\Persistence\WordPositionRepository;
 
-class WordPositionService
+use App\Persistence\PositionWordRepository;
+
+class PositionWordService
 {
-
-    private $word_position_repository;
+    private $position_word_repository;
     public function __construct()
     {
-        $this->word_position_repository = new WordPositionRepository();
+        $this->position_word_repository = new PositionWordRepository();
     }
 
     public function store($data) {
         // Need validation steps for the data
 
-        return $this->word_position_repository->store($data);
+        return $this->position_word_repository->store($data);
     }
 }

@@ -6,11 +6,11 @@
  * Time: 18:11
  */
 namespace App\Services;
+
 use App\Persistence\WordRepository;
 
 class WordService
 {
-
     private $word_repository;
     public function __construct()
     {

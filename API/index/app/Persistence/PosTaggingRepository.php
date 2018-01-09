@@ -6,31 +6,28 @@
  * Time: 18:07
  */
 namespace App\Persistence;
+use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class PosTaggingRepository
+class PosTaggingRepository extends Repository
 {
-
-    private $post_tagging_message = array();
-
-    /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
             // Store in DB the data given
-            DB::select('CALL PPOSTAGGING(?)',array(
+            DB::select('CALL PPOS_TAGGING(?)',array(
                 $data['pos_tag'],
             ));
 
-            $this->post_tagging_message['message'] = "";
-            $this->post_tagging_message['code'] =  201;
+            $this->response['message'] = "";
+            $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
-            return $this->post_tagging_message;
+            return $this->response;
         } catch (\PDOException $e) {
             // Get the pdo exception message
-            $this->post_tagging_message['message'] = $e->getMessage();
-            $this->post_tagging_message['code'] =  500;
+            $this->response['message'] = $e->getMessage();
+            $this->response['code'] =  Repository::$INTERNAL_ERROR;
 
-            return $this->post_tagging_message;
+            return $this->response;
 
         }
     }

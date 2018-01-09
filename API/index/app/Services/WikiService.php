@@ -5,15 +5,12 @@
  * Date: 09/01/2018
  * Time: 10:35
  */
-
 namespace App\Services;
-
 
 use App\Persistence\WikiRepository;
 
 class WikiService
 {
-
     private $wiki_repository;
     public function __construct()
     {

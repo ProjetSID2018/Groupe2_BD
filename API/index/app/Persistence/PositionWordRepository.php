@@ -3,20 +3,26 @@
  * Created by PhpStorm.
  * User: Utilisateur
  * Date: 08/01/2018
- * Time: 18:07
+ * Time: 18:08
  */
 namespace App\Persistence;
-
 use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class EntityRepository extends Repository
+class PositionWordRepository extends Repository
 {
     public function store($data) {
         try {
             // Store in DB the data given
-            DB::select('CALL PENTITY(?)',array(
-                $data['type_entity']
+            DB::select('CALL PPOSITION_WORD(?,?,?,?,?,?,?,?)',array(
+                $data['position'],
+                $data['title'],
+                $data['id_word'],
+                $data['id_entity'],
+                $data['id_pos_tag'],
+                $data['id_article'],
+                $data['id_synonym'],
+                $data['id_wiki'],
             ));
 
             $this->response['message'] = "";

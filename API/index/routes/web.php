@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 Route::prefix('code/bd_index/api')->group(function () {
     // Entity's routes
@@ -26,7 +21,7 @@ Route::prefix('code/bd_index/api')->group(function () {
     Route::post('word', 'WordController@store');
 
     // Word_Position's routes
-    Route::post('wordposition', 'WordPositionController@store');
+    Route::post('positionword', 'PositionWordController@store');
 
     // Synonym's routes
     Route::post('synonym', 'SynonymController@store');
@@ -44,7 +39,7 @@ Route::prefix('code/bd_index/api')->group(function () {
     Route::post('belong', 'BelongController@store');
 
     // Written's routes
-    Route::post('written', 'WrittenController@store');
+    Route::post('write', 'WriteController@store');
 
     // Article's routes
     Route::post('article', 'ArticleController@store');

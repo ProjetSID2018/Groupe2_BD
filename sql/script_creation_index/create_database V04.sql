@@ -104,10 +104,10 @@ CREATE TABLE pos_tagging(
 
 
 #------------------------------------------------------------
-# Table: position
+# Table: position_mot
 #------------------------------------------------------------
 
-CREATE TABLE position(
+CREATE TABLE position_mot(
         id_position int (11) Auto_increment  NOT NULL ,
         position    Int NOT NULL ,
         titre       Bool NOT NULL ,
@@ -125,7 +125,7 @@ CREATE TABLE position(
 #------------------------------------------------------------
 
 CREATE TABLE synonyme(
-        id_synonyme Int NOT NULL ,
+        id_synonyme int (11) Auto_increment  NOT NULL ,
         synonyme    Varchar (50) NOT NULL ,
         PRIMARY KEY (id_synonyme ) ,
         UNIQUE (synonyme )
@@ -135,8 +135,8 @@ ALTER TABLE article ADD CONSTRAINT FK_article_id_auteur FOREIGN KEY (id_auteur) 
 ALTER TABLE article ADD CONSTRAINT FK_article_id_journal FOREIGN KEY (id_journal) REFERENCES journal(id_journal);
 ALTER TABLE article ADD CONSTRAINT FK_article_id_classe FOREIGN KEY (id_classe) REFERENCES classification(id_classe);
 ALTER TABLE mot ADD CONSTRAINT FK_mot_id_racine FOREIGN KEY (id_racine) REFERENCES mot_racine(id_racine);
-ALTER TABLE position ADD CONSTRAINT FK_position_id_mot FOREIGN KEY (id_mot) REFERENCES mot(id_mot);
-ALTER TABLE position ADD CONSTRAINT FK_position_id_entite FOREIGN KEY (id_entite) REFERENCES entite(id_entite);
-ALTER TABLE position ADD CONSTRAINT FK_position_id_pos_tag FOREIGN KEY (id_pos_tag) REFERENCES pos_tagging(id_pos_tag);
-ALTER TABLE position ADD CONSTRAINT FK_position_id_article FOREIGN KEY (id_article) REFERENCES article(id_article);
-ALTER TABLE position ADD CONSTRAINT FK_position_id_synonyme FOREIGN KEY (id_synonyme) REFERENCES synonyme(id_synonyme);
+ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_mot FOREIGN KEY (id_mot) REFERENCES mot(id_mot);
+ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_entite FOREIGN KEY (id_entite) REFERENCES entite(id_entite);
+ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_pos_tag FOREIGN KEY (id_pos_tag) REFERENCES pos_tagging(id_pos_tag);
+ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_article FOREIGN KEY (id_article) REFERENCES article(id_article);
+ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_synonyme FOREIGN KEY (id_synonyme) REFERENCES synonyme(id_synonyme);

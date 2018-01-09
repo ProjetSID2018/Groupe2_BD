@@ -19,3 +19,16 @@ permettre l’insertion de données envoyées par les groupes 5, 6 et 7
 Nous testons le commit puis le push.
 
 TESt2
+
+
+flag :=0
+
+SELECT ARTICLE.IDARTICLE INTO VIDARTICLE_VERIF,
+FROM ARTICLE
+WHERE $VIDARTICLE=ARTICLE.IDARTICLE
+
+flag:=1
+
+RAISE EXCEPTION ERROR :
+if(flag==0)
+if(flag=1)

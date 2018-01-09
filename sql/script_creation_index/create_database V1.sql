@@ -11,9 +11,14 @@ CREATE TABLE article(
         id_article       int (11) Auto_increment  NOT NULL ,
         date_publication Date ,
         taux_positivite  Float ,
-        id_auteur        Int NOT NULL ,
+        taux_negativite  Float ,
+        taux_joie        Float ,
+        taux_peur        Float ,
+        taux_tristesse   Float ,
+        taux_colere      Float ,
+        taux_surprise    Float ,
+        taux_degout      Float ,
         id_journal       Int NOT NULL ,
-        id_classe        Int NOT NULL ,
         PRIMARY KEY (id_article )
 )ENGINE=InnoDB;
 
@@ -116,6 +121,7 @@ CREATE TABLE position_mot(
         id_pos_tag  Int NOT NULL ,
         id_article  Int NOT NULL ,
         id_synonyme Int NOT NULL ,
+        id_wiki     Int NOT NULL ,
         PRIMARY KEY (id_position )
 )ENGINE=InnoDB;
 
@@ -131,12 +137,48 @@ CREATE TABLE synonyme(
         UNIQUE (synonyme )
 )ENGINE=InnoDB;
 
-ALTER TABLE article ADD CONSTRAINT FK_article_id_auteur FOREIGN KEY (id_auteur) REFERENCES auteur(id_auteur);
+
+#------------------------------------------------------------
+# Table: wiki
+#------------------------------------------------------------
+
+CREATE TABLE wiki(
+        id_wiki   int (11) Auto_increment  NOT NULL ,
+        lien_wiki Varchar (2803) NOT NULL ,
+        PRIMARY KEY (id_wiki )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: ecrit
+#------------------------------------------------------------
+
+CREATE TABLE ecrit(
+        id_article Int NOT NULL ,
+        id_auteur  Int NOT NULL ,
+        PRIMARY KEY (id_article ,id_auteur )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: appartient
+#------------------------------------------------------------
+
+CREATE TABLE appartient(
+        id_article Int NOT NULL ,
+        id_classe  Int NOT NULL ,
+        PRIMARY KEY (id_article ,id_classe )
+)ENGINE=InnoDB;
+
 ALTER TABLE article ADD CONSTRAINT FK_article_id_journal FOREIGN KEY (id_journal) REFERENCES journal(id_journal);
-ALTER TABLE article ADD CONSTRAINT FK_article_id_classe FOREIGN KEY (id_classe) REFERENCES classification(id_classe);
 ALTER TABLE mot ADD CONSTRAINT FK_mot_id_racine FOREIGN KEY (id_racine) REFERENCES mot_racine(id_racine);
 ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_mot FOREIGN KEY (id_mot) REFERENCES mot(id_mot);
 ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_entite FOREIGN KEY (id_entite) REFERENCES entite(id_entite);
 ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_pos_tag FOREIGN KEY (id_pos_tag) REFERENCES pos_tagging(id_pos_tag);
 ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_article FOREIGN KEY (id_article) REFERENCES article(id_article);
 ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_synonyme FOREIGN KEY (id_synonyme) REFERENCES synonyme(id_synonyme);
+ALTER TABLE position_mot ADD CONSTRAINT FK_position_mot_id_wiki FOREIGN KEY (id_wiki) REFERENCES wiki(id_wiki);
+ALTER TABLE ecrit ADD CONSTRAINT FK_ecrit_id_article FOREIGN KEY (id_article) REFERENCES article(id_article);
+ALTER TABLE ecrit ADD CONSTRAINT FK_ecrit_id_auteur FOREIGN KEY (id_auteur) REFERENCES auteur(id_auteur);
+ALTER TABLE appartient ADD CONSTRAINT FK_appartient_id_article FOREIGN KEY (id_article) REFERENCES article(id_article);
+ALTER TABLE appartient ADD CONSTRAINT FK_appartient_id_classe FOREIGN KEY (id_classe) REFERENCES classification(id_classe);

@@ -17,12 +17,23 @@ class WordRepository
     public function store($data) {
         try {
             // Store in DB the data given  (without using procedure)
-            DB::table('mot')->insert([
-                'id_mot' => null,
-                'id_racine' => $data['id_racine'],
-                'mot' => $data['mot'],
+            // Store in wordroot table
+            DB::table('mot_racine')->insert([
+                'id_racine' => null,
+                'mot' => $data['mot_racine'],
             ]);
 
+
+            // Get the id_root attribute value frolm wordroot table
+            $mot_racine  = Db::table('mot_racine')->select('id_racine')->where('mot','=',$data['mot_racine'])->get();
+
+
+            // Store in word table
+            DB::table('mot')->insert([
+                'id_mot' => null,
+                'mot' => $data['mot_racine'],
+                'id_racine' => $mot_racine[0]->id_racine,
+            ]);
             $this->word_message['message'] = "L'ajout a pu se faire";
             $this->word_message['code'] =  201;
 

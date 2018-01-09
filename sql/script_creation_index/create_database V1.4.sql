@@ -62,14 +62,14 @@ CREATE TABLE classification(
 
 
 #------------------------------------------------------------
-# Table: lemme
+# Table: lemma
 #------------------------------------------------------------
 
-CREATE TABLE lemme(
-        id_lemme int (11) Auto_increment  NOT NULL ,
-        lemme    Varchar (25) ,
-        PRIMARY KEY (id_lemme ) ,
-        UNIQUE (lemme )
+CREATE TABLE lemma(
+        id_lemma int (11) Auto_increment  NOT NULL ,
+        lemma    Varchar (25) ,
+        PRIMARY KEY (id_lemma ) ,
+        UNIQUE (lemma )
 )ENGINE=InnoDB;
 
 
@@ -86,15 +86,15 @@ CREATE TABLE entity(
 
 
 #------------------------------------------------------------
-# Table: mot
+# Table: word
 #------------------------------------------------------------
 
-CREATE TABLE mot(
-        id_mot   int (11) Auto_increment  NOT NULL ,
-        mot      Varchar (50) NOT NULL ,
-        id_lemme Int NOT NULL ,
-        PRIMARY KEY (id_mot ) ,
-        UNIQUE (mot )
+CREATE TABLE word(
+        id_word  int (11) Auto_increment  NOT NULL ,
+        word     Varchar (50) NOT NULL ,
+        id_lemma Int NOT NULL ,
+        PRIMARY KEY (id_word ) ,
+        UNIQUE (word )
 )ENGINE=InnoDB;
 
 
@@ -118,7 +118,7 @@ CREATE TABLE position_word(
         id_position int (11) Auto_increment  NOT NULL ,
         position    Int NOT NULL ,
         title       Boolean NOT NULL ,
-        id_mot      Int NOT NULL ,
+        id_word     Int NOT NULL ,
         id_entity   Int NOT NULL ,
         id_pos_tag  Int NOT NULL ,
         id_article  Int NOT NULL ,
@@ -173,8 +173,8 @@ CREATE TABLE belong(
 )ENGINE=InnoDB;
 
 ALTER TABLE article ADD CONSTRAINT FK_article_id_newspaper FOREIGN KEY (id_newspaper) REFERENCES newspaper(id_newspaper);
-ALTER TABLE mot ADD CONSTRAINT FK_mot_id_lemme FOREIGN KEY (id_lemme) REFERENCES lemme(id_lemme);
-ALTER TABLE position_word ADD CONSTRAINT FK_position_word_id_mot FOREIGN KEY (id_mot) REFERENCES mot(id_mot);
+ALTER TABLE word ADD CONSTRAINT FK_word_id_lemma FOREIGN KEY (id_lemma) REFERENCES lemma(id_lemma);
+ALTER TABLE position_word ADD CONSTRAINT FK_position_word_id_word FOREIGN KEY (id_word) REFERENCES word(id_word);
 ALTER TABLE position_word ADD CONSTRAINT FK_position_word_id_entity FOREIGN KEY (id_entity) REFERENCES entity(id_entity);
 ALTER TABLE position_word ADD CONSTRAINT FK_position_word_id_pos_tag FOREIGN KEY (id_pos_tag) REFERENCES pos_tagging(id_pos_tag);
 ALTER TABLE position_word ADD CONSTRAINT FK_position_word_id_article FOREIGN KEY (id_article) REFERENCES article(id_article);

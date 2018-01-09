@@ -117,7 +117,7 @@ CREATE TABLE pos_tagging(
 CREATE TABLE position_mot(
         id_position int (11) Auto_increment  NOT NULL ,
         position    Int NOT NULL ,
-        titre       Bool NOT NULL ,
+        titre       Boolean NOT NULL ,
         id_mot      Int NOT NULL ,
         id_entite   Int NOT NULL ,
         id_pos_tag  Int NOT NULL ,

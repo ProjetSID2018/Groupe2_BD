@@ -17,21 +17,24 @@ class ArticleRepository
     public function store($data) {
         try {
             // Store in DB the data given  (without using procedure)
-            DB::table('article')->insert([
-                "id_article" => null,
-                "date_publication" => $data['date_publication'],
-                "taux_positivite" => $data['taux_positivite'],
-                "taux_negativite" => $data['taux_negativite'],
-                "taux_joie" => $data['taux_joie'],
-                "taux_peur" => $data['taux_peur'],
-                "taux_tristesse" => $data['taux_tristesse'],
-                "taux_colere" => $data['taux_colere'],
-                "taux_surprise" => $data['taux_surprise'],
-                "taux_degout" => $data['taux_degout'],
-                "id_journal" => $data['id_journal']
-            ]);
+            DB::select('CALL PARTICLE(?,?,?,?,?,?,?,?,?,?,@id_article)',array(
+                $data['date_publication'],
+                $data['taux_positivite'],
+                $data['taux_negativite'],
+                $data['taux_joie'],
+                $data['taux_peur'],
+                $data['taux_tristesse'],
+                $data['taux_colere'],
+                $data['taux_surprise'],
+                $data['taux_degout'],
+                $data['id_journal'],
+            ));
 
-            $this->article_message['message'] = "L'ajout a pu se faire";
+            // Get the output variable from the procedure
+            $results = DB::select('Select @id_article as id_article');
+
+            // Sent the id_article in json format to client
+            $this->article_message['message'] = json_encode(['id_article' =>$results[0]->id_article]);
             $this->article_message['code'] =  201;
 
             return $this->article_message;

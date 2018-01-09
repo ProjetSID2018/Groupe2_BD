@@ -25,9 +25,6 @@ Route::post('author', 'AuthorController@store');
 // Word's routes
 Route::post('word', 'WordController@store');
 
-// Word_Root's routes
-Route::post('wordroot', 'WordRootController@store');
-
 // Word_Position's routes
 Route::post('wordposition', 'WordPositionController@store');
 

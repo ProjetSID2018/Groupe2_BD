@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 
-class Entite extends Controller
+
+class NewspaperController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,8 +36,8 @@ class Entite extends Controller
      */
     public function store(Request $request)
     {   
-        $VENTITE = $request->input('entite');
-        $results = DB::select('CALL PENTITE(?)',array($VENTITE));
+        $VJOURNAL = $request->input('nomJournal');
+        $results = DB::select('CALL PJOURNAL(?)',array($VJOURNAL));
         return(response('',200));
     }
 

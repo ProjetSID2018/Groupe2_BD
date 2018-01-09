@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\JsonMapper\JsonMapper;
+use App\Services\EntityService;
 use Illuminate\Http\Request;
-use DB;
 
-
-class Journal extends Controller
+class EntityController extends Controller
 {
+
+   private $json_mapper;
+   private $entity_service;
+
+    public function __construct()
+    {
+        $this->middleware('web');
+        $this->json_mapper = new JsonMapper();
+        $this->entity_service = new EntityService();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +27,7 @@ class Journal extends Controller
     public function index()
     {
         //
+        return(response('',200));
     }
 
     /**
@@ -26,6 +38,7 @@ class Journal extends Controller
     public function create()
     {
         //
+        return(response('',200));
     }
 
     /**
@@ -35,10 +48,15 @@ class Journal extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $VJOURNAL = $request->input('nomJournal');
-        $results = DB::select('CALL PJOURNAL(?)',array($VJOURNAL));
-        return(response('',200));
+    {
+        // Parse automatically the json sent by client
+        $data = $this->json_mapper->json_mapper($request->all());
+
+        // Get the response from entity_service's associated method
+        $response = $this->entity_service->store($data);
+
+        // Send to client the message and the status code
+        return(response($response['message'],$response['code']));
     }
 
     /**
@@ -50,6 +68,7 @@ class Journal extends Controller
     public function show($id)
     {
         //
+        return(response('',200));
     }
 
     /**
@@ -61,6 +80,7 @@ class Journal extends Controller
     public function edit($id)
     {
         //
+        return(response('',200));
     }
 
     /**
@@ -72,7 +92,10 @@ class Journal extends Controller
      */
     public function update(Request $request, $id)
     {
+        $data = $this->json_mapper->json_mapper($request->all());
+
         //
+        return(response('',200));
     }
 
     /**
@@ -83,6 +106,6 @@ class Journal extends Controller
      */
     public function destroy($id)
     {
-        //
+        return(response('',200));
     }
 }

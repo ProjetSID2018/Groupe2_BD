@@ -20,6 +20,6 @@ Route::get('/hello/{name}', function () {
 */
 
 
-Route::post('Entite', 'Entite@store');
+Route::post('entity', 'EntityController@store');
 
-Route::post('Journal', 'Journal@store');
+Route::post('newspaper', 'NewspaperController@store');

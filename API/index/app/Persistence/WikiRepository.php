@@ -3,13 +3,13 @@
  * Created by PhpStorm.
  * User: Utilisateur
  * Date: 09/01/2018
- * Time: 10:47
+ * Time: 10:35
  */
 
-namespace App\Services;
+namespace App\Persistence;
 
 
-class WrittenService
+class WikiRepository
 {
 
 }

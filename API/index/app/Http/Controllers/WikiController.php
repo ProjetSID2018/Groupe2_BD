@@ -2,27 +2,26 @@
 /**
  * Created by PhpStorm.
  * User: Utilisateur
- * Date: 08/01/2018
- * Time: 17:53
+ * Date: 09/01/2018
+ * Time: 10:35
  */
 
 namespace App\Http\Controllers;
 
 
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\ArticleService;
+use App\Services\WikiService;
 use Illuminate\Http\Request;
 
-class ArticleController
+class WikiController
 {
-
     private $json_mapper;
-    private $pos_tagging_service;
+    private $wiki_service;
 
     public function __construct()
     {
         $this->json_mapper = new JsonMapper();
-        $this->article_service = new ArticleService();
+        $this->wiki_service = new WikiService();
     }
 
     /**
@@ -37,7 +36,7 @@ class ArticleController
         $data = $this->json_mapper->json_mapper($request->all());
 
         // Get the response from entity_service's associated method
-        $response = $this->pos_tagging_service->store($data);
+        $response = $this->wiki_service->store($data);
 
         // Send to client the message and the status code
         return(response($response['message'],$response['code']));

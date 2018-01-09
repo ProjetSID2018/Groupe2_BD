@@ -20,12 +20,17 @@ class WrittenRepository
     public function store($data) {
         try {
             // Store in DB the data given  (without using procedure)
-            DB::table('ecrit')->insert([
+            /*DB::table('ecrit')->insert([
                 'id_article' => $data['id_article'],
                 'id_auteur' => $data['id_auteur']
-            ]);
+            ]);*/
 
-            $this->written_message['message'] = "L'ajout a pu se faire";
+            DB::select('CALL PECRIT(?,?)',array(
+                $data['id_auteur'],
+                $data['id_article'],
+            ));
+
+            $this->written_message['message'] = "";
             $this->written_message['code'] =  201;
 
             return $this->written_message;

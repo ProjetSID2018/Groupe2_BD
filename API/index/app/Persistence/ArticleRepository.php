@@ -16,7 +16,7 @@ class ArticleRepository
     /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
-            // Store in DB the data given  (without using procedure)
+            // Store in DB the data given
             DB::select('CALL PARTICLE(?,?,?,?,?,?,?,?,?,?,@id_article)',array(
                 $data['date_publication'],
                 $data['taux_positivite'],

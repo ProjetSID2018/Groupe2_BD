@@ -16,25 +16,17 @@ class WordRepository
     /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
-            // Store in DB the data given  (without using procedure)
-            // Store in wordroot table
-            DB::table('mot_racine')->insert([
-                'id_racine' => null,
-                'mot' => $data['mot_racine'],
-            ]);
+            // Store in DB the data given
+            DB::select('CALL PMOT(?,?,@id_mot)',array(
+                $data['mot'],
+                $data['mot_racine'],
+            ));
 
+            // Get the output variable from the procedure
+            $results = DB::select('Select @id_mot as id_mot');
 
-            // Get the id_root attribute value frolm wordroot table
-            $mot_racine  = Db::table('mot_racine')->select('id_racine')->where('mot','=',$data['mot_racine'])->get();
-
-
-            // Store in word table
-            DB::table('mot')->insert([
-                'id_mot' => null,
-                'mot' => $data['mot_racine'],
-                'id_racine' => $mot_racine[0]->id_racine,
-            ]);
-            $this->word_message['message'] = "L'ajout a pu se faire";
+            // Sent the id_article in json format to client
+            $this->word_message['message'] = json_encode(['id_mot' =>$results[0]->id_mot]);
             $this->word_message['code'] =  201;
 
             return $this->word_message;

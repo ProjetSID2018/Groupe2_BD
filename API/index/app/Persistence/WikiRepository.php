@@ -19,13 +19,16 @@ class WikiRepository
     /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
-            // Store in DB the data given  (without using procedure)
-            DB::table('wiki')->insert([
-                "id_wiki" => null,
-                "lien_wiki" => $data['lien_wiki']
-            ]);
+            // Store in DB the data given
+            DB::select('CALL PWIKI(?,@id_wiki)',array(
+                $data['lien_wiki'],
+            ));
 
-            $this->wiki_message['message'] = "L'ajout a pu se faire";
+            // Get the output variable from the procedure
+            $results = DB::select('Select @id_wiki as id_wiki');
+
+            // Sent the id_article in json format to client
+            $this->wiki_message['message'] = json_encode(['id_wiki' =>$results[0]->id_wiki]);
             $this->wiki_message['code'] =  201;
 
             return $this->wiki_message;

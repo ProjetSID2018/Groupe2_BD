@@ -19,13 +19,13 @@ class BelongRepository
     /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
-            // Store in DB the data given  (without using procedure)
-            DB::table('appartient')->insert([
-                "id_article" => $data['id_article'],
-                "id_classe" => $data['id_classe']
-            ]);
+            // Store in DB the data given
+            DB::select('CALL PAPPARTIENT(?,?)',array(
+                $data['id_article'],
+                $data['id_classe'],
+            ));
 
-            $this->belong_message['message'] = "L'ajout a pu se faire";
+            $this->classification_message['message'] = "";
             $this->belong_message['code'] =  201;
 
             return $this->belong_message;

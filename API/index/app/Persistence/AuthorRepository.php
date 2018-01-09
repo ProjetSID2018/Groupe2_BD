@@ -16,14 +16,17 @@ class AuthorRepository
     /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
-            // Store in DB the data given  (without using procedure)
-            DB::table('auteur')->insert([
-                'id_auteur' => null,
-                'nom_auteur' => $data['nom_auteur'],
-                'prenom_auteur' => $data['prenom_auteur'],
-            ]);
+            // Store in DB the data given
+            DB::select('CALL PAUTEUR(?,?,@id_auteur)',array(
+                $data['nom_auteur'],
+                $data['prenom_auteur'],
+            ));
 
-            $this->author_message['message'] = "L'ajout a pu se faire";
+            // Get the output variable from the procedure
+            $results = DB::select('Select @id_auteur as id_auteur');
+
+            // Sent the id_article in json format to client
+            $this->author_message['message'] = json_encode(['id_auteur' =>$results[0]->id_auteur]);
             $this->author_message['code'] =  201;
 
             return $this->author_message;

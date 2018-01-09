@@ -15,15 +15,14 @@ class NewspaperRepository
     /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
-            // Store in DB the data given  (without using procedure)
-            DB::table('journal')->insert([
-                'id_journal' => null,
-                'nom_journal' => $data['nom_journal'],
-                'lien_journal' => $data['lien_journal'],
-                'lien_logo' =>$data['lien_logo']
-            ]);
+            // Store in DB the data given
+            DB::select('CALL PJOURNAL(?,?,?)',array(
+                $data['nom_journal'],
+                $data['lien_journal'],
+                $data['lien_logo']
+            ));
 
-            $this->newspaper_message['message'] = "L'ajout a pu se faire";
+            $this->newspaper_message['message'] = "";
             $this->newspaper_message['code'] =  201;
 
             return $this->newspaper_message;

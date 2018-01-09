@@ -17,12 +17,16 @@ class PosTaggingRepository
     public function store($data) {
         try {
             // Store in DB the data given  (without using procedure)
-            DB::table('pos_tagging')->insert([
+            /*DB::table('pos_tagging')->insert([
                 'id_pos_tag' => null,
                 'pos_tag' => $data['pos_tag']
-            ]);
+            ]);*/
 
-            $this->post_tagging_message['message'] = "L'ajout a pu se faire";
+            DB::select('CALL PPOSTTAGGING(?)',array(
+                $data['pos_tag'],
+            ));
+
+            $this->post_tagging_message['message'] = "";
             $this->post_tagging_message['code'] =  201;
 
             return $this->post_tagging_message;

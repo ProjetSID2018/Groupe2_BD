@@ -16,13 +16,12 @@ class ClassificationRepository
     /** NEED TO IMPLEMENTS MACROS TO NOT PUT RAW DATA */
     public function store($data) {
         try {
-            // Store in DB the data given  (without using procedure)
-            DB::table('classification')->insert([
-                "id_classe" => null,
-                "classe" => $data['classe']
-            ]);
+            // Store in DB the data given
+            DB::select('CALL PCLASSIFICATION(?)',array(
+                $data['classe']
+            ));
 
-            $this->classification_message['message'] = "L'ajout a pu se faire";
+            $this->classification_message['message'] = "";
             $this->classification_message['code'] =  201;
 
             return $this->classification_message;

@@ -17,12 +17,11 @@ class SynonymRepository
     public function store($data) {
         try {
             // Store in DB the data given  (without using procedure)
-            DB::table('synonyme')->insert([
-                'id_synonyme' => null,
-                'synonyme' => $data['synonyme']
-            ]);
+            DB::select('CALL PSYNONYME(?)',array(
+                $data['synonyme'],
+            ));
 
-            $this->synonym_message['message'] = "L'ajout a pu se faire";
+            $this->synonym_message['message'] = "";
             $this->synonym_message['code'] =  201;
 
             return $this->synonym_message;

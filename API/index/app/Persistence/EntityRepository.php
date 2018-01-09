@@ -17,9 +17,11 @@ class EntityRepository
     public function store($data) {
         try {
             // Store in DB the data given
-            DB::select('CALL PENTITE(?)',array($data['type_entite']));
+            DB::select('CALL PENTITE(?)',array(
+                $data['type_entite']
+            ));
 
-            $this->entity_message['message'] = "L'ajout a pu se faire";
+            $this->entity_message['message'] = "";
             $this->entity_message['code'] =  201;
 
             return $this->entity_message;

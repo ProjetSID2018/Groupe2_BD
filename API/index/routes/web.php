@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 */
-Route::prefix('code/bd_index/api')->group(function () {
+Route::prefix('var/www/html/projet2018/code/bd_index/API/index')->group(function () {
     // Entity's routes
     Route::post('entity', 'EntityController@store');
 

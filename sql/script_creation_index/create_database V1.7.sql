@@ -30,8 +30,8 @@ CREATE TABLE article(
 CREATE TABLE newspaper(
         id_newspaper   int (11) Auto_increment  NOT NULL ,
         name_newspaper Varchar (50) ,
-        link_newspaper Varchar (500) ,
-        link_logo      Varchar (500) ,
+        link_newspaper Varchar (255) ,
+        link_logo      Varchar (255) ,
         PRIMARY KEY (id_newspaper ) ,
         UNIQUE (name_newspaper ,link_newspaper ,link_logo )
 )ENGINE=InnoDB;
@@ -146,7 +146,7 @@ CREATE TABLE synonym(
 
 CREATE TABLE wiki(
         id_wiki   int (11) Auto_increment  NOT NULL ,
-        file_wiki Varchar (500) NOT NULL ,
+        file_wiki Varchar (255) NOT NULL ,
         PRIMARY KEY (id_wiki ) ,
         UNIQUE (file_wiki )
 )ENGINE=InnoDB;

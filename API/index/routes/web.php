@@ -38,8 +38,8 @@ Route::prefix('code/bd_index/api')->group(function () {
     // Belong's routes
     Route::post('belong', 'BelongController@store');
 
-    // Written's routes
-    Route::post('write', 'WriteController@store');
+    // Realize's routes
+    Route::post('realize', 'RealizeController@store');
 
     // Article's routes
     Route::post('article', 'ArticleController@store');

@@ -12,7 +12,7 @@ namespace App\Persistence;
 use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class WriteRepository extends Repository
+class RealizeRepository extends Repository
 {
     public function store($data) {
         try {

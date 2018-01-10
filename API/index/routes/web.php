@@ -29,8 +29,8 @@ Route::prefix('code/bd_index/api')->group(function () {
     // Wiki's routes
     Route::post('wiki', 'WikiController@store');
 
-    // Classification's routes
-    Route::post('classification', 'ClassificationController@store');
+    // Label's routes
+    Route::post('label', 'LabelController@store');
 
     // Pos_Tagging's routes
     Route::post('postagging', 'PosTaggingController@store');

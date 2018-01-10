@@ -17,7 +17,7 @@ class RealizeRepository extends Repository
     public function store($data) {
         try {
             // Store in DB the data given
-            DB::select('CALL PWRITE(?,?)',array(
+            DB::select('CALL PREALIZE(?,?)',array(
                 $data['id_author'],
                 $data['id_article'],
             ));

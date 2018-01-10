@@ -9,13 +9,13 @@ namespace App\Persistence;
 use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class ClassificationRepository extends Repository
+class LabelRepository extends Repository
 {
     public function store($data) {
         try {
             // Store in DB the data given
-            DB::select('CALL PCLASSIFICATION(?)',array(
-                $data['class']
+            DB::select('CALL PLABEL(?)',array(
+                $data['label']
             ));
 
             $this->response['message'] = "";

@@ -12,9 +12,9 @@
     
    Select count(id_label) into nb1
   
-   from BELONG B,LABEL L
+   from LABEL L
    
-   where B.id_label= L.id_label;
+   where New.id_label IN (SELECT id_label from LABEL );
    
    IF (nb1= 0 )  THEN
        

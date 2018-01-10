@@ -19,7 +19,7 @@ class BelongRepository extends Repository
             // Store in DB the data given
             DB::select('CALL PBELONG(?,?)',array(
                 $data['id_article'],
-                $data['id_class'],
+                $data['id_label'],
             ));
 
             $this->response['message'] = "";

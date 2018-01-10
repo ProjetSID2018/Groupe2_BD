@@ -7,14 +7,14 @@
  */
 namespace App\Services;
 
-use App\Persistence\WriteRepository;
+use App\Persistence\RealizeRepository;
 
-class WriteService
+class RealizeService
 {
     private $written_repository;
     public function __construct()
     {
-        $this->written_repository = new WriteRepository();
+        $this->written_repository = new RealizeRepository();
     }
 
     public function store($data) {

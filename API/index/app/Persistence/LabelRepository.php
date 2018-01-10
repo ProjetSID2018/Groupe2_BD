@@ -2,30 +2,27 @@
 /**
  * Created by PhpStorm.
  * User: Utilisateur
- * Date: 09/01/2018
- * Time: 10:46
+ * Date: 08/01/2018
+ * Time: 18:06
  */
-
 namespace App\Persistence;
-
-
 use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class WriteRepository extends Repository
+class LabelRepository extends Repository
 {
     public function store($data) {
         try {
             // Store in DB the data given
-            DB::select('CALL PWRITE(?,?)',array(
-                $data['id_author'],
-                $data['id_article'],
+            DB::select('CALL PLABEL(?)',array(
+                $data['label']
             ));
 
             $this->response['message'] = "";
             $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
             return $this->response;
+
         } catch (\PDOException $e) {
             // Get the pdo exception message
             $this->response['message'] = $e->getMessage();

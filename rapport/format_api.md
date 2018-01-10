@@ -104,5 +104,10 @@ La procédure sémantique met à jour à partir de l'id_article. créer un attri
 
 
 To do modifier la procédure PPOSITIONWORD aller chercher l'id de l'entité, du pos tag, du synonyme et du file wiki à partir des chaines de caractères. La procédure prend l'entite en entrée et va chercher l'id...
+ 
+Charles de Gaulle 
 
+Personne Personne Personne 
+
+Gaulle -> Personne
 

@@ -50,14 +50,14 @@ CREATE TABLE author(
 
 
 #------------------------------------------------------------
-# Table: classification
+# Table: label
 #------------------------------------------------------------
 
-CREATE TABLE classification(
-        id_class int (11) Auto_increment  NOT NULL ,
-        class    Varchar (25) ,
-        PRIMARY KEY (id_class ) ,
-        UNIQUE (class )
+CREATE TABLE label(
+        id_label int (11) Auto_increment  NOT NULL ,
+        label    Varchar (25) ,
+        PRIMARY KEY (id_label ) ,
+        UNIQUE (label )
 )ENGINE=InnoDB;
 
 
@@ -92,7 +92,7 @@ CREATE TABLE entity(
 CREATE TABLE word(
         id_word  int (11) Auto_increment  NOT NULL ,
         word     Varchar (50) NOT NULL ,
-        id_lemma Int NOT NULL ,
+        id_lemma Int,
         PRIMARY KEY (id_word ) ,
         UNIQUE (word )
 )ENGINE=InnoDB;
@@ -119,11 +119,11 @@ CREATE TABLE position_word(
         position    Int NOT NULL ,
         title       Boolean NOT NULL ,
         id_word     Int NOT NULL ,
-        id_entity   Int NOT NULL ,
-        id_pos_tag  Int NOT NULL ,
+        id_entity   Int,
+        id_pos_tag  Int,
         id_article  Int NOT NULL ,
-        id_synonym  Int NOT NULL ,
-        id_wiki     Int NOT NULL ,
+        id_synonym  Int,
+        id_wiki     Int,
         PRIMARY KEY (id_position )
 )ENGINE=InnoDB;
 
@@ -168,8 +168,8 @@ CREATE TABLE realize(
 
 CREATE TABLE belong(
         id_article Int NOT NULL ,
-        id_class   Int NOT NULL ,
-        PRIMARY KEY (id_article ,id_class )
+        id_label   Int NOT NULL ,
+        PRIMARY KEY (id_article ,id_label )
 )ENGINE=InnoDB;
 
 ALTER TABLE article ADD CONSTRAINT FK_article_id_newspaper FOREIGN KEY (id_newspaper) REFERENCES newspaper(id_newspaper);
@@ -183,4 +183,4 @@ ALTER TABLE position_word ADD CONSTRAINT FK_position_word_id_wiki FOREIGN KEY (i
 ALTER TABLE realize ADD CONSTRAINT FK_realize_id_article FOREIGN KEY (id_article) REFERENCES article(id_article);
 ALTER TABLE realize ADD CONSTRAINT FK_realize_id_author FOREIGN KEY (id_author) REFERENCES author(id_author);
 ALTER TABLE belong ADD CONSTRAINT FK_belong_id_article FOREIGN KEY (id_article) REFERENCES article(id_article);
-ALTER TABLE belong ADD CONSTRAINT FK_belong_id_class FOREIGN KEY (id_class) REFERENCES classification(id_class);
+ALTER TABLE belong ADD CONSTRAINT FK_belong_id_label FOREIGN KEY (id_label) REFERENCES label(id_label);

@@ -14,8 +14,8 @@
 	   END IF;
 
        Select count(id_article) into nb1
-    from ARTICLE A,NEWSPAPER N
-    where A.id_newspaper= N.id_newspaper;
+    from ARTICLE A,JOURNAL J
+    where A.id_journal= J.id_journal;
     IF (nb1= 0 )  THEN
         SIGNAL CLE_ETRANGERE ;
     END IF;

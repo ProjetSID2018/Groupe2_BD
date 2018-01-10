@@ -1,29 +1,20 @@
+CREATE TRIGGER TREALIZE BEFORE INSERT
+ON REALIZE FOR EACH ROW
 
- 
- DELIMITER |
+BEGIN
 
-  CREATE TRIGGER TREALIZE BEFORE INSERT
-  ON REALIZE FOR EACH ROW
-
-  BEGIN
-
-       DECLARE nb1 int ;
-
-       DECLARE CLE_ETRANGERE CONDITION FOR SQLSTATE '99990';
+   DECLARE nb1 int;
+   DECLARE CLE_ETRANGERE CONDITION FOR SQLSTATE '99990';
 
 
-       Select count(id_author) into nb1
+   SELECT COUNT(A.id_author) INTO nb1
+   FROM AUTHOR A
+   WHERE NEW.id_author IN (SELECT id_author FROM author);
+   
+   IF (nb1=0)  THEN
+   
+	 SIGNAL CLE_ETRANGERE SET MESSAGE_TEXT = 'foreign key does not exist';
 
-       from REALIZE R,AUTHOR A
-    
-       where R.id_author= A.id_author;
+   END IF;
 
-       IF (nb1= 0 )  THEN
-       
-         SIGNAL CLE_ETRANGERE SET MESSAGE_TEXT = 'foreign key does not exist';
-
-       END IF;
- 
-   END |
-
-  DELIMITER ;
+END |

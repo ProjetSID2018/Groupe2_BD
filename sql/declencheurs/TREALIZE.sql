@@ -16,7 +16,7 @@
 
        from REALIZE R,AUTHOR A
     
-       where R.id_journal= A.id_author;
+       where R.id_author= A.id_author;
 
        IF (nb1= 0 )  THEN
        

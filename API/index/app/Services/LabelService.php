@@ -7,14 +7,14 @@
  */
 namespace App\Services;
 
-use App\Persistence\ClassificationRepository;
+use App\Persistence\LabelRepository;
 
-class ClassificationService
+class LabelService
 {
     private $classification_repository;
     public function __construct()
     {
-        $this->classification_repository = new ClassificationRepository();
+        $this->classification_repository = new LabelRepository();
     }
 
     public function store($data) {

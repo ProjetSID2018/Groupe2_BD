@@ -10,10 +10,10 @@ namespace App\Http\Controllers;
 
 
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\ClassificationService;
+use App\Services\LabelService;
 use Illuminate\Http\Request;
 
-class ClassificationController extends Controller
+class LabelController extends Controller
 {
     private $json_mapper;
     private $classification_service;
@@ -21,7 +21,7 @@ class ClassificationController extends Controller
     public function __construct()
     {
         $this->json_mapper = new JsonMapper();
-        $this->classification_service = new ClassificationService();
+        $this->classification_service = new LabelService();
     }
 
     /**

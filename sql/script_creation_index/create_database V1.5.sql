@@ -119,11 +119,11 @@ CREATE TABLE position_word(
         position    Int NOT NULL ,
         title       Boolean NOT NULL ,
         id_word     Int NOT NULL ,
-        id_entity   Int NOT NULL ,
-        id_pos_tag  Int NOT NULL ,
+        id_entity   Int ,
+        id_pos_tag  Int ,
         id_article  Int NOT NULL ,
-        id_synonym  Int NOT NULL ,
-        id_wiki     Int NOT NULL ,
+        id_synonym  Int ,
+        id_wiki     Int ,
         PRIMARY KEY (id_position )
 )ENGINE=InnoDB;
 

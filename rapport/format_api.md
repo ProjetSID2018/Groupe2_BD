@@ -57,7 +57,7 @@ Ce dictionnaire n'est pas exhaustif mais doit au moins contenir les informations
 
 #### 2) Autant de dictionnaires que de mots sélectionnés dans l'article (position_word est la position dans le texte, title = True si élément du titre False sinon) : 
 
-```{"id_word" : int, "position_word" : int, "title": boolean}```
+```{ {"id_word" : int, "position_word" : int, "title": boolean} }```
 
 Ce dictionnaire n'est pas exhaustif mais doit au moins contenir les informations ci-dessus.
 
@@ -98,6 +98,8 @@ POST :
 
 
 
+Pe-rocessus : 11231 
+
 
 note créer procedure article pour filtrage puis autre procedure article pour semantique. cette procédure récupère l'id du journal pour filtrage.
 La procédure sémantique met à jour à partir de l'id_article. créer un attribut synthetic boolean true lors de l'insertion par filtrage et false lors de la mise à jour par sémantique.
@@ -110,4 +112,10 @@ Charles de Gaulle
 Personne Personne Personne 
 
 Gaulle -> Personne
+
+sudo php artisan serve --host 130.120.8.250 --port 22
+
+ kill $(lsof -t -i:8000)
+
+pkill -f "/var/www/html/projet2018/code/bd_index/API/index"
 

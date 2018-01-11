@@ -23,4 +23,6 @@ BEGIN
 
 END/
 
+DELIMITER ;
+
 CALL pauthor('1', 'MICKA', 'ANJ');

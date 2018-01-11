@@ -23,4 +23,4 @@ BEGIN
 
 END/
 
-CALL pauthor('1', 'MICKA', 'ANJ');
+DELIMITER ; 

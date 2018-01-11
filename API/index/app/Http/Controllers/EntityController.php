@@ -29,15 +29,8 @@ class EntityController extends Controller
         // Parse automatically the json sent by client
         $raw_data = $this->json_mapper->json_mapper($request->all());
 
-        foreach ($raw_data as $data) {
-            // Get the response from entity_service's associated method
-            $response = $this->entity_service->store($data);
-
-            // Send to client the message and the status code
-            return(response($response['message'],$response['code']));
-        };
-
-        // end for
+        // Return the appropriate message to client
+        return $this->parse($raw_data,$this->entity_service);
     }
 
 

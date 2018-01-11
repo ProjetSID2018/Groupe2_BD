@@ -34,12 +34,9 @@ class PosTaggingController extends Controller
     public function store(Request $request)
     {
         // Parse automatically the json sent by client
-        $data = $this->json_mapper->json_mapper($request->all());
+        $raw_data = $this->json_mapper->json_mapper($request->all());
 
-        // Get the response from entity_service's associated method
-        $response = $this->pos_tagging_service->store($data);
-
-        // Send to client the message and the status code
-        return(response($response['message'],$response['code']));
+        // Return the appropriate message to client
+        return $this->parse($raw_data,$this->pos_tagging_service);
     }
 }

@@ -113,26 +113,4 @@ Personne Personne Personne
 
 Gaulle -> Personne
 
-sudo php artisan serve --host 130.120.8.250 --port 5005
-
- kill $(lsof -t -i:8000)
-
-pkill -f "/var/www/html/projet2018/code/bd_index/API/index"
-
-mysql -u DBIndex_user -p
-password_DBIndex_user
-
-APP_NAME=Laravel
-APP_ENV=production
-APP_KEY=base64:xAEabbERdtOJQB1GnFJuuQBQ1XLS+H7V1zY2gU6qBuk=
-APP_DEBUG=true
-APP_LOG_LEVEL=debug
-APP_URL=http://localhost
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=DBIndex
-DB_USERNAME=DBIndex_user
-DB_PASSWORD=password_DBIndex_user
 

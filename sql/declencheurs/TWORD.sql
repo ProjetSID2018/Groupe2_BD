@@ -1,22 +1,26 @@
 ﻿DELIMITER |
 CREATE TRIGGER TWORD BEFORE INSERT
 ON WORD FOR EACH ROW
-
 BEGIN
+   DECLARE counter1 int;
+   DECLARE counter2 int;
+   DECLARE CLE_ETRANGERE CONDITION FOR SQLSTATE '99996';
+   DECLARE CLE_ETRANGERE2 CONDITION FOR SQLSTATE '99997';
 
-   DECLARE nb1 int;
-   DECLARE CLE_ETRANGERE CONDITION FOR SQLSTATE '99990';
-
-   SELECT COUNT(L.id_lemma) INTO nb1
+   SELECT COUNT(L.id_lemma) INTO counter1
    FROM LEMMA L
    WHERE NEW.id_lemma IN (SELECT id_lemma FROM LEMMA);
    
-   IF (nb1=0)  THEN
-   
-	 SIGNAL CLE_ETRANGERE SET MESSAGE_TEXT = 'foreign key does not exist';
-
+   IF (counter1=0)  THEN   
+	 SIGNAL CLE_ETRANGERE SET MESSAGE_TEXT = "LEMMA's Foreign key does not exist";
    END IF;
-
+   
+   SELECT COUNT(S.id_synonym) INTO counter2
+   FROM SYNONYM S
+   WHERE NEW.id_synonym IN (SELECT id_synonym FROM SYNONYM);
+   
+   IF (counter2=0)  THEN   
+	 SIGNAL CLE_ETRANGERE2 SET MESSAGE_TEXT = "SYNONYM's Foreign key does not exist";
+   END IF;
 END |
-
 DELIMITER ;

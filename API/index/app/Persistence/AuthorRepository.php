@@ -23,7 +23,7 @@ class AuthorRepository extends Repository
             $results = DB::select('Select @id_author as id_author');
 
             // Sent the id_author in json format to client
-            $this->response['message'] = json_encode(['id_author' =>$results[0]->id_author]);
+            $this->response['message'] = ['id_author' =>$results[0]->id_author];
             $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
             return $this->response;

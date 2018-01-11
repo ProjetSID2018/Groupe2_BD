@@ -24,7 +24,7 @@ class WordRepository extends Repository
             $results = DB::select('Select @id_word as id_word');
 
             // Sent the id_word in json format to client
-            $this->response['message'] = json_encode(['id_word' =>$results[0]->id_word]);
+            $this->response['message'] = ['id_word' =>$results[0]->id_word];
             $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
             return $this->response;

@@ -26,7 +26,7 @@ class WikiRepository extends Repository
             $results = DB::select('Select @id_wiki as id_wiki');
 
             // Sent the id_wiki in json format to client
-            $this->response['message'] = json_encode(['id_wiki' =>$results[0]->id_wiki]);
+            $this->response['message'] = ['id_wiki' =>$results[0]->id_wiki];
             $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
             return $this->response;

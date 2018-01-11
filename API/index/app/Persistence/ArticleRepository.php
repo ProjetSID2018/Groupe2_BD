@@ -31,7 +31,7 @@ class ArticleRepository extends Repository
             $results = DB::select('Select @id_article as id_article');
 
             // Sent the id_article in json format to client
-            $this->response['message'] = json_encode(['id_article' =>$results[0]->id_article]);
+            $this->response['message'] = ['id_article' =>$results[0]->id_article];
             $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
             return $this->response;

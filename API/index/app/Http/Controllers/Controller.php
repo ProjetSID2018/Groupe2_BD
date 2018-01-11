@@ -13,19 +13,13 @@ class Controller extends BaseController
 
     public function parse($raw_data,$service) {
         // Response
-        $raw_response = array();
-
+        $response = array();
 
         foreach ($raw_data as $data) {
             $index = 0;
             // Get the raw_response from entity_service's associated method
-            array_push($raw_response,$service->store($data));
-            // Send to client the message and the status code
-            if ($raw_response[$index]['code'] == 500) {
-                return(response($raw_response[$index],$raw_response[$index]['code']));
-            }
-
+            array_push($response,$service->store($data));
         };
-        return(response($raw_response,$raw_response[$index]['code']));
+        return(response($response,200));
     }
 }

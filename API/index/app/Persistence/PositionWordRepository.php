@@ -21,7 +21,8 @@ class PositionWordRepository extends Repository
                 $data['type_entity'],
                 $data['pos_tag'],
                 $data['id_article'],
-                $data['file_wiki']
+                $data['file_wiki'],
+                $data['synonym']
             ));
 
             $this->response['message'] = "";

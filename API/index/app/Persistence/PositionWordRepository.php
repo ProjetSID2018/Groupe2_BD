@@ -17,7 +17,7 @@ class PositionWordRepository extends Repository
             DB::select('CALL PPOSITION_WORD(?,?,?,?,?,?,?)',array(
                 $data['position'],
                 $data['title'],
-                $data['id_word'],
+                $data['word'],
                 $data['type_entity'],
                 $data['pos_tag'],
                 $data['id_article'],

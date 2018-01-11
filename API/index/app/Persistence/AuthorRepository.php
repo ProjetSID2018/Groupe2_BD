@@ -14,7 +14,8 @@ class AuthorRepository extends Repository
     public function store($data) {
         try {
             // Store in DB the data given
-            DB::select('CALL PAUTHOR(?,?,@id_author)',array(
+            DB::select('CALL PAUTHOR(?,?,?)',array(
+                $data['id_article'],
                 $data['surname_author'],
                 $data['firstname_author'],
             ));
@@ -23,7 +24,7 @@ class AuthorRepository extends Repository
             $results = DB::select('Select @id_author as id_author');
 
             // Sent the id_author in json format to client
-            $this->response['message'] = ['id_author' =>$results[0]->id_author];
+            $this->response['message'] = "";
             $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
             return $this->response;

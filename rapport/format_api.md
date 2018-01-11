@@ -119,3 +119,6 @@ sudo php artisan serve --host 130.120.8.250 --port 22
 
 pkill -f "/var/www/html/projet2018/code/bd_index/API/index"
 
+mysql -u DBIndex_user -p
+password_DBIndex_user
+

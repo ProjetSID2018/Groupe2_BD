@@ -24,7 +24,7 @@ class ArticleRepository extends Repository
                 $data['rate_angry'],
                 $data['rate_surprise'],
                 $data['rate_disgust'],
-                $data['id_newspaper'],
+                $data['name_newspaper'],
             ));
 
             // Get the output variable from the procedure

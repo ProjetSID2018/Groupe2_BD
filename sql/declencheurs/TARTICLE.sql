@@ -4,19 +4,15 @@ ON ARTICLE FOR EACH ROW
 
 BEGIN
 
-   DECLARE nb1 int;
+   DECLARE counter1 int;
    DECLARE CLE_ETRANGERE CONDITION FOR SQLSTATE '99990';
 
-
-   SELECT COUNT(N.id_newspaper) INTO nb1
+   SELECT COUNT(N.id_newspaper) INTO counter1
    FROM NEWSPAPER N
    WHERE NEW.id_newspaper IN (SELECT id_newspaper FROM NEWSPAPER);
    
-   IF (nb1=0)  THEN
-   
-	 SIGNAL CLE_ETRANGERE SET MESSAGE_TEXT = 'foreign key does not exist';
-
+   IF (counter1=0)  THEN
+	 SIGNAL CLE_ETRANGERE SET MESSAGE_TEXT = "NEWSPAPER's Foreign key does not exist";
    END IF;
-
 END |
 DELIMITER ;

@@ -4,7 +4,7 @@ DELIMITER |
 
 CREATE PROCEDURE PPOS_TAGGING (IN VPOS_TAG VARCHAR(25))   
 BEGIN
-	INSERT INTO POS_TAGGING (id_pos_tag, pos_tag) VALUES (NULL,VPOS_TAG);
+	INSERT INTO pos_tagging (id_pos_tag, pos_tag) VALUES (NULL,VPOS_TAG);
 
 END|         
 

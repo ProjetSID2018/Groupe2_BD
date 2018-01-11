@@ -38,9 +38,6 @@ Route::prefix('var/www/html/projet2018/code/bd_index/API/index')->group(function
     // Belong's routes
     Route::post('belong', 'BelongController@store');
 
-    // Realize's routes
-    Route::post('realize', 'RealizeController@store');
-
     // Article's routes
     Route::post('article', 'ArticleController@store');
 });

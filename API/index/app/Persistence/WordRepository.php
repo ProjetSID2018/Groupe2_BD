@@ -17,7 +17,6 @@ class WordRepository extends Repository
             DB::select('CALL PWORD(?,?,@id_word)',array(
                 $data['word'],
                 $data['lemma'],
-                $data['synonym']
             ));
 
             // Get the output variable from the procedure

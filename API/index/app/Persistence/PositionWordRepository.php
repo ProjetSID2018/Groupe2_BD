@@ -14,14 +14,13 @@ class PositionWordRepository extends Repository
     public function store($data) {
         try {
             // Store in DB the data given
-            DB::select('CALL PPOSITION_WORD(?,?,?,?,?,?,?,?)',array(
+            DB::select('CALL PPOSITION_WORD(?,?,?,?,?,?,?)',array(
                 $data['position'],
                 $data['title'],
                 $data['id_word'],
                 $data['type_entity'],
                 $data['pos_tag'],
                 $data['id_article'],
-                $data['synonym'],
                 $data['file_wiki']
             ));
 

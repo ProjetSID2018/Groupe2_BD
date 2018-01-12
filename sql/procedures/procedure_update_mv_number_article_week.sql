@@ -1,12 +1,12 @@
 #-- Groupe 2
 
-
+DROP PROCEDURE IF EXISTS update_mv_number_article_week;
 DELIMITER |
 #--
 #-- Procédures
 #-- Procédure de calcul du nombre d'articles par semaine
 #--
-CREATE PROCEDURE `update_mv_number_article_week`()
+CREATE IF NOT EXISTS PROCEDURE `update_mv_number_article_week`()
 BEGIN
    TRUNCATE mv_number_article_week;
 

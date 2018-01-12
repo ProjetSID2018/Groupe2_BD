@@ -7,7 +7,7 @@ SET GLOBAL event_scheduler = ON;
 
 DELIMITER |
 
-CREATE EVENT `e_tf_idf_day` 
+CREATE EVENT IF NOT EXISTS `e_tf_idf_day` 
 ON SCHEDULE EVERY 1 DAY STARTS '2018-01-11 00:30:00' 
 ON COMPLETION PRESERVE ENABLE 
 DO CALL update_mv_term_frequency_day() |

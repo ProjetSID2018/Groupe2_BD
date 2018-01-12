@@ -14,9 +14,9 @@ BEGIN
   DECLARE CLE_ETRANGERE4 CONDITION FOR SQLSTATE '99994';
   DECLARE CLE_ETRANGERE5 CONDITION FOR SQLSTATE '99995';
   
-  SELECT COUNT(W.id_position) INTO counter1
+  SELECT COUNT(W.id_word) INTO counter1
   FROM  WORD W
-  WHERE NEW.id_position IN (SELECT id_position FROM WORD);
+  WHERE NEW.id_word IN (SELECT id_word FROM WORD);
   IF (counter1 = 0) THEN
 	  SIGNAL CLE_ETRANGERE1 SET MESSAGE_TEXT = "WORD's Foreign key does not exist";
   END IF;
@@ -28,7 +28,7 @@ BEGIN
 	  SIGNAL CLE_ETRANGERE2 SET MESSAGE_TEXT = "ENTITY's Foreign key does not exist";
   END IF;
 
-  SELECT COUNT(PT.id_post_tag) INTO counter3
+  SELECT COUNT(PT.id_pos_tag) INTO counter3
   FROM POS_TAGGING PT
   WHERE NEW.id_pos_tag IN (SELECT id_pos_tag FROM POS_TAGGING);
   IF (counter3 = 0) THEN

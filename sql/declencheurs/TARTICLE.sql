@@ -10,7 +10,7 @@ BEGIN
    SELECT COUNT(N.id_newspaper) INTO counter1
    FROM NEWSPAPER N
    WHERE NEW.id_newspaper IN (SELECT id_newspaper FROM NEWSPAPER);
-   
+
    IF (counter1=0)  THEN
 	 SIGNAL CLE_ETRANGERE SET MESSAGE_TEXT = "NEWSPAPER's Foreign key does not exist";
    END IF;

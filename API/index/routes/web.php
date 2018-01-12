@@ -14,9 +14,6 @@ Route::prefix('var/www/html/projet2018/code/bd_index/API/index')->group(function
     // Newspaper's routes
     Route::post('newspaper', 'NewspaperController@store');
 
-    // Author's routes
-    Route::post('author', 'AuthorController@store');
-
     // Word's routes
     Route::post('word', 'WordController@store');
 

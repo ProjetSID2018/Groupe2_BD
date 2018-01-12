@@ -9,7 +9,7 @@
 namespace App\Repositories;
 
 
-abstract class Repository implements RepositoryInterface
+abstract class Repository
 {
     /* An array containing the response that will be send to client */
     protected $response = array();
@@ -20,7 +20,12 @@ abstract class Repository implements RepositoryInterface
     /* If there is any internal problems, we send this status code */
     protected  static $INTERNAL_ERROR = 500;
 
-    /* Function that allows us to store data in our database, according to an existing table */
+    /**
+     * Allow to store data in the concerned table
+     * @param $data :an array containing all the data parse
+     * from the json sent by client
+     * @return :a response that will be interpreted by client
+     */
     public abstract function store($data);
 
 }

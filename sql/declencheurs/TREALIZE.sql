@@ -1,20 +1,20 @@
 DELIMITER |
 CREATE TRIGGER TREALIZE BEFORE INSERT
-ON REALIZE FOR EACH ROW
+ON realize FOR EACH ROW
 
 BEGIN
 
-   DECLARE nb1 int;
+   DECLARE compteur1 int;
    DECLARE CLE_ETRANGERE CONDITION FOR SQLSTATE '99990';
 
 
-   SELECT COUNT(A.id_author) INTO nb1
-   FROM AUTHOR A
+   SELECT COUNT(A.id_author) INTO compteur1
+   FROM author A
    WHERE NEW.id_author IN (SELECT id_author FROM author);
    
-   IF (nb1=0)  THEN
+   IF (compteur1=0)  THEN
    
-	 SIGNAL CLE_ETRANGERE SET MESSAGE_TEXT = 'foreign key does not exist';
+	 SIGNAL CLE_ETRANGERE SET MESSAGE_TEXT = "AUTHOR's foreign key does not exist";
 
    END IF;
 

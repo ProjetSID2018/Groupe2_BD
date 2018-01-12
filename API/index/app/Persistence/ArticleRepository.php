@@ -48,7 +48,6 @@ class ArticleRepository extends Repository
                 }
             }
 
-
             // Send the id_article in json format to client
             $this->response['message'] = ['id_article' =>$results[0]->id_article];
             $this->response['code'] =  Repository::$CREATION_SUCCEEDED;

@@ -14,7 +14,7 @@ class PositionWordRepository extends Repository
     public function store($data,$id_article) {
         try {
             // Store in DB the data given
-            DB::select('CALL PPOSITION_WORD(?,?,?,?,?,?,?,?)',array(
+            DB::select('CALL FILTERING_PPOSITION_WORD(?,?,?,?,?,?)',array(
                 $data['position'],
                 $data['word'],
                 $data['title'],

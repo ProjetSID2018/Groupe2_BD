@@ -28,13 +28,15 @@ class FilteringService implements  Service
         // Need validation steps for the data
 
         $response = array();
-        // CALL PARTICLE & PAUTHOR
+
+        // CALL FILTERING_PARTICLE & FILTERING_PAUTHOR
         array_push($response,$this->article_repository->store($data['article']));
-        print_r($response);
-        // CALL PPOSITION_WORD
-        /*foreach ($data['position_word'] as $position_word){
-            array_push($response,$this->position_word_repository->store($position_word,$response));
-        };*/
+
+
+        // CALL FILTERING_PPOSITION_WORD
+        foreach ($data['position_word'] as $position_word){
+            array_push($response,$this->position_word_repository->store($position_word,$response[0]['message']['id_article']));
+        };
 
         return $response;
     }

@@ -24,14 +24,14 @@ class ArticleRepository extends Repository
 
             // Store the authors for this article
             if (is_string(($data['surname_author']))) {
-                DB::select('CALL PAUTHOR(?,?,?)',array(
+                DB::select('CALL FILTERING_PAUTHOR(?,?,?)',array(
                     $results[0]->id_article,
                     $data['surname_author'],
                     NULL
                 ));
             } else {
                 foreach ($data['surname_author'] as $surname_author) {
-                    DB::select('CALL PAUTHOR(?,?,?)',array(
+                    DB::select('CALL FILTERING_PAUTHOR(?,?,?)',array(
                         $results[0]->id_article,
                         $surname_author,
                         NULL

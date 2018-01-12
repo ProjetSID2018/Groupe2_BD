@@ -32,7 +32,6 @@ class FilteringService implements  Service
         // CALL FILTERING_PARTICLE & FILTERING_PAUTHOR
         array_push($response,$this->article_repository->store($data['article']));
 
-
         // CALL FILTERING_PPOSITION_WORD
         foreach ($data['position_word'] as $position_word){
             array_push($response,$this->position_word_repository->store($position_word,$response[0]['message']['id_article']));

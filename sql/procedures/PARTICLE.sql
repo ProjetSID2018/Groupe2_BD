@@ -31,4 +31,4 @@ BEGIN
 END/ 
 
 DELIMITER ;
--- Call PARTICLE('1994-12-10',0.1,0.1,0.1,0.1,0.1,0.1, 0.1,0.1,'figaro',@id_article);
+Call PARTICLE('1994-12-10',0.1,0.1,0.1,0.1,0.1,0.1, 0.1,0.1,'figaro',@id_article);

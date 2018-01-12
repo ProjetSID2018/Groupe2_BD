@@ -34,8 +34,8 @@ BEGIN
     	SELECT LAST_INSERT_ID() INTO v_id_pos_tag;
 	END IF;
 
-	INSERT INTO position_word (id_position, position,title,id_word,id_entity,id_pos_tag,id_article)
-    VALUES (NULL, v_position, v_title, v_id_word, v_id_entity, v_id_pos_tag, v_id_article);
+	INSERT INTO position_word (position,title,id_word,id_entity,id_pos_tag,id_article)
+    VALUES (v_position, v_title, v_id_word, v_id_entity, v_id_pos_tag, v_id_article);
 
 END|
 DELIMITER ;

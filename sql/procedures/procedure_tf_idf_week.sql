@@ -1,7 +1,7 @@
 #--Groupe 2
 
 #--Procédure de calcul du tf par semaine
-
+DROP PROCEDURE IF EXISTS update_mv_term_frequency_week;
 DELIMITER |
 
 CREATE PROCEDURE `update_mv_term_frequency_week`()
@@ -17,8 +17,9 @@ BEGIN
     CALL update_nb_articles_week();
 END |
 DELIMITER ;
-#--Procédure de calcul du nombre d'article par semaine
 
+#--Procédure de calcul du nombre d'article par semaine
+DROP PROCEDURE IF EXISTS update_nb_articles_week;
 DELIMITER |
 
 CREATE PROCEDURE `update_nb_articles_week`()
@@ -33,7 +34,7 @@ BEGIN
 END |
 DELIMITER ;
 #--Procédure de calcul du nombre d'article pour chaque mot 
-
+DROP PROCEDURE IF EXISTS update_nb_articles_word_week;
 DELIMITER |
 
 CREATE PROCEDURE `update_nb_articles_word_week`()
@@ -48,8 +49,9 @@ BEGIN
     CALL update_mv_inverse_document_frequency_week();
 END |
 DELIMITER ;
-#--Procédure de calcul de l'idf par semaine
 
+#--Procédure de calcul de l'idf par semaine
+DROP PROCEDURE IF EXISTS update_mv_inverse_document_frequency_week;
 DELIMITER |
 
 CREATE PROCEDURE `update_mv_inverse_document_frequency_week`()
@@ -64,7 +66,7 @@ BEGIN
 END |
 DELIMITER ;
 #--Procédure de calcul du tf_idf par semaine
-
+DROP PROCEDURE IF EXISTS update_mv_tf_idf_week;
 DELIMITER |
 
 CREATE PROCEDURE `update_mv_tf_idf_week`()

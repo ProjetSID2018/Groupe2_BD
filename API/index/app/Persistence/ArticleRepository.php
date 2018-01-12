@@ -13,7 +13,7 @@ class ArticleRepository extends Repository
 {
     public function store($data) {
         try {
-            // Store in DB the data given
+            // Store the article
             DB::select('CALL PARTICLE(?,?,?,?,?,?,?,?,?,?,@id_article)',array(
                 $data['date_publication'],
                 $data['rate_positivity'],
@@ -25,12 +25,22 @@ class ArticleRepository extends Repository
                 $data['rate_surprise'],
                 $data['rate_disgust'],
                 $data['name_newspaper'],
+
             ));
 
             // Get the output variable from the procedure
             $results = DB::select('Select @id_article as id_article');
 
-            // Sent the id_article in json format to client
+            // Store the authors for this article
+            foreach ($data['surname_author'] as $surname_author) {
+                DB::select('CALL PAUTHOR(?,?,?)',array(
+                    $results[0]->id_article,
+                    $surname_author,
+                    NULL
+                ));
+            }
+
+            // Send the id_article in json format to client
             $this->response['message'] = ['id_article' =>$results[0]->id_article];
             $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 

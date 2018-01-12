@@ -11,8 +11,7 @@ BEGIN
 
 	SELECT author.id_author INTO vid_author
 	FROM author 
-	WHERE author.surname_author = vsurname_author
-	AND author.firstname_author = vfirstname_author;
+	WHERE author.surname_author = vsurname_author;
 
 	IF (vid_author IS NULL)  THEN 
 		INSERT INTO author (id_author, surname_author, firstname_author) VALUES (NULL, VSURNAME_AUTHOR,VFIRSTNAME_AUTHOR);

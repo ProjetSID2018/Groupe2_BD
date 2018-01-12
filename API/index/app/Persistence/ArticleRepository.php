@@ -52,4 +52,34 @@ class ArticleRepository extends Repository
             return $this->response;
         }
     }
+
+    public function update($data) {
+        try {
+            // Update the article
+            DB::select('CALL SEMANTIC_PARTICLE(?,?,?,?,?,?,?,?,?)',array(
+                $data['id_article'],
+                $data['rate_positivity'],
+                $data['rate_negativity'],
+                $data['rate_joy'],
+                $data['rate_fear'],
+                $data['rate_sadness'],
+                $data['rate_angry'],
+                $data['rate_surprise'],
+                $data['rate_disgust']
+            ));
+
+            // Send the id_article in json format to client
+            $this->response['message'] = "";
+            $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
+
+            return $this->response;
+        } catch (\PDOException $e) {
+            // Get the pdo exception message
+            $this->response['message'] = $e->getMessage();
+            $this->response['code'] =  Repository::$INTERNAL_ERROR;
+
+            return $this->response;
+        }
+
+    }
 }

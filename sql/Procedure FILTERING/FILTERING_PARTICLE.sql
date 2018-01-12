@@ -24,4 +24,5 @@ BEGIN
 
 	SELECT LAST_INSERT_ID() INTO v_id_article;
 
+    COMMIT;
 END/

@@ -35,4 +35,8 @@ class PositionWordRepository extends Repository
             return $this->response;
         }
     }
+
+    public function update($data,$id_article) {
+
+    }
 }

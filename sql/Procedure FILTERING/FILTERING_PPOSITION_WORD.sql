@@ -1,6 +1,7 @@
-DROP PROCEDURE IF EXISTS `FILTERING_PPOSITION_WORD`;
-DELIMITER |
-CREATE PROCEDURE `FILTERING_PPOSITION_WORD` (IN v_position INT, IN v_word VARCHAR(25), IN v_title BOOLEAN, IN v_pos_tag VARCHAR(25), IN v_type_entity VARCHAR(25), IN v_id_article INT)
+DELIMITER /
+DROP PROCEDURE IF EXISTS FILTERING_PPOSITION_WORD/
+
+CREATE PROCEDURE FILTERING_PPOSITION_WORD (IN v_position INT, IN v_word VARCHAR(25), IN v_title BOOLEAN, IN v_pos_tag VARCHAR(25), IN v_type_entity VARCHAR(25), IN v_id_article INT)
 
 BEGIN
 		 DECLARE v_id_word INT;
@@ -37,5 +38,4 @@ BEGIN
 	INSERT INTO position_word (position,title,id_word,id_entity,id_pos_tag,id_article)
     VALUES (v_position, v_title, v_id_word, v_id_entity, v_id_pos_tag, v_id_article);
 
-END|
-DELIMITER ;
+END/

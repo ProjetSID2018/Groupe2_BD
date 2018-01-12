@@ -21,5 +21,3 @@ BEGIN
     INSERT INTO realize(id_author, id_article) VALUES(vid_author ,vid_article);
 
 END/
-
-DELIMITER ;

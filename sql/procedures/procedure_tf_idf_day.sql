@@ -2,6 +2,7 @@
 
 #--Procédure de calcul du tf par jour
 
+DROP PROCEDURE IF EXISTS update_mv_term_frequency_day;
 DELIMITER |
 CREATE PROCEDURE `update_mv_term_frequency_day`()
 BEGIN
@@ -17,7 +18,7 @@ BEGIN
 END |
 DELIMITER ;
 #--Procédure de calcul du nombre d'article par jour
-
+DROP PROCEDURE IF EXISTS update_nb_articles;
 DELIMITER |
 
 CREATE PROCEDURE `update_nb_articles`()
@@ -33,7 +34,7 @@ BEGIN
 END |
 DELIMITER ;
 #--Procédure de calcul du nombre d'article pour chaque mot 
-
+DROP PROCEDURE IF EXISTS update_nb_articles_word;
 DELIMITER |
 
 CREATE PROCEDURE `update_nb_articles_word`()
@@ -49,7 +50,7 @@ BEGIN
 END |
 DELIMITER ;
 #--Procédure de calcul de l'idf par jour
-
+DROP PROCEDURE IF EXISTS update_mv_inverse_document_frequency_day;
 DELIMITER |
 
 CREATE PROCEDURE `update_mv_inverse_document_frequency_day`()
@@ -65,7 +66,7 @@ BEGIN
 END |
 DELIMITER ;
 #--Procédure de calcul du tf_idf par jour
-
+DROP PROCEDURE IF EXISTS update_mv_tf_idf_day;
 DELIMITER |
 
 CREATE PROCEDURE `update_mv_tf_idf_day`()

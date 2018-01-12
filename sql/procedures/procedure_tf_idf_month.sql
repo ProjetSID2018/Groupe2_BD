@@ -1,7 +1,7 @@
 #--Groupe 2
 
 #--Procédure de calcul du tf par mois
-
+DROP PROCEDURE IF EXISTS update_mv_term_frequency_month;
 DELIMITER |
 
 CREATE PROCEDURE `update_mv_term_frequency_month`()
@@ -18,7 +18,7 @@ BEGIN
 END |
 DELIMITER ;
 #--Procédure de calcul du nombre d'article par mois
-
+DROP PROCEDURE IF EXISTS update_nb_articles_month;
 DELIMITER |
 
 CREATE PROCEDURE `update_nb_articles_month`()
@@ -33,7 +33,7 @@ BEGIN
 END |
 DELIMITER ;
 #--Procédure de calcul du nombre d'article pour chaque mot 
-
+DROP PROCEDURE IF EXISTS update_nb_articles_word_month;
 DELIMITER |
 
 CREATE PROCEDURE `update_nb_articles_word_month`()
@@ -49,7 +49,7 @@ BEGIN
 END |
 DELIMITER ;
 #--Procédure de calcul de l'idf par mois
-
+DROP PROCEDURE IF EXISTS update_mv_inverse_document_frequency_month;
 DELIMITER |
 
 CREATE PROCEDURE `update_mv_inverse_document_frequency_month`()
@@ -64,7 +64,7 @@ BEGIN
 END |
 DELIMITER ;
 #--Procédure de calcul du tf_idf par mois
-
+DROP PROCEDURE IF EXISTS update_mv_tf_idf_month;
 DELIMITER |
 
 CREATE PROCEDURE `update_mv_tf_idf_month`()

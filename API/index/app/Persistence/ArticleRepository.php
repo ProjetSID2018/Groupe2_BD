@@ -32,13 +32,22 @@ class ArticleRepository extends Repository
             $results = DB::select('Select @id_article as id_article');
 
             // Store the authors for this article
-            foreach ($data['surname_author'] as $surname_author) {
+            if (is_string(($data['surname_author']))) {
                 DB::select('CALL PAUTHOR(?,?,?)',array(
                     $results[0]->id_article,
-                    $surname_author,
+                    $data['surname_author'],
                     NULL
                 ));
+            } else {
+                foreach ($data['surname_author'] as $surname_author) {
+                    DB::select('CALL PAUTHOR(?,?,?)',array(
+                        $results[0]->id_article,
+                        $surname_author,
+                        NULL
+                    ));
+                }
             }
+
 
             // Send the id_article in json format to client
             $this->response['message'] = ['id_article' =>$results[0]->id_article];

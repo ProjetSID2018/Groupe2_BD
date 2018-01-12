@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Service;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -11,15 +12,15 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function parse($raw_data,$service) {
+    public function parse($raw_data,Service $service) {
         // Response
         $response = array();
 
         foreach ($raw_data as $data) {
-            $index = 0;
             // Get the raw_response from entity_service's associated method
             array_push($response,$service->store($data));
         };
-        return(response($response,200));
+
+        return(response($response[0],200));
     }
 }

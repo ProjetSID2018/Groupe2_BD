@@ -11,18 +11,16 @@ use Illuminate\Support\Facades\DB;
 
 class PositionWordRepository extends Repository
 {
-    public function store($data) {
+    public function store($data,$id_article) {
         try {
             // Store in DB the data given
             DB::select('CALL PPOSITION_WORD(?,?,?,?,?,?,?,?)',array(
                 $data['position'],
-                $data['title'],
                 $data['word'],
-                $data['type_entity'],
+                $data['title'],
                 $data['pos_tag'],
-                $data['id_article'],
-                $data['file_wiki'],
-                $data['synonym']
+                $data['type_entity'],
+                $id_article
             ));
 
             $this->response['message'] = "";

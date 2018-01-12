@@ -20,12 +20,5 @@ abstract class Repository
     /* If there is any internal problems, we send this status code */
     protected  static $INTERNAL_ERROR = 500;
 
-    /**
-     * Allow to store data in the concerned table
-     * @param $data :an array containing all the data parse
-     * from the json sent by client
-     * @return :a response that will be interpreted by client
-     */
-    public abstract function store($data);
 
 }

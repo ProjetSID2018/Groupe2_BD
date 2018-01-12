@@ -37,5 +37,11 @@ Route::prefix('var/www/html/projet2018/code/bd_index/API/index')->group(function
 
     // Article's routes
     Route::post('article', 'ArticleController@store');
+
+    // Filtering group's routes
+    Route::post('filtering', 'FilteringController@store')->name("code/bd_index/API/filtering");
+
+    // Semantic group's routes
+    Route::patch('semantic', 'SemanticController@store');
 });
 

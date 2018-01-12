@@ -14,18 +14,9 @@ class ArticleRepository extends Repository
     public function store($data) {
         try {
             // Store the article
-            DB::select('CALL PARTICLE(?,?,?,?,?,?,?,?,?,?,@id_article)',array(
+            DB::select('CALL FILTERING_PARTICLE(?,?,@id_article)',array(
                 $data['date_publication'],
-                $data['rate_positivity'],
-                $data['rate_negativity'],
-                $data['rate_joy'],
-                $data['rate_fear'],
-                $data['rate_sadness'],
-                $data['rate_angry'],
-                $data['rate_surprise'],
-                $data['rate_disgust'],
                 $data['name_newspaper'],
-
             ));
 
             // Get the output variable from the procedure

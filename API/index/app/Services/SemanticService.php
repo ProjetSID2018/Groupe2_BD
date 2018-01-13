@@ -32,11 +32,10 @@ class SemanticService implements Service
         // CALL SEMANTIC_PARTICLE
         array_push($response,$this->article_repository->update($data['article']));
 
-        // CALL SEMANTIC_WORD
-        /*foreach ($data['position_word'] as $position_word){
-            array_push($response,$this->position_word_repository->update($position_word,$response[0]['message']['id_article']));
-        };*/
-
+        // CALL SEMANTIC_PWORD
+        foreach ($data['position_word'] as $position_word){
+            array_push($response,$this->position_word_repository->update($position_word,$data['article']['id_article']));
+        };
         return $response;
     }
 }

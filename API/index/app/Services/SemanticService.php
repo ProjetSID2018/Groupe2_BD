@@ -19,7 +19,6 @@ class SemanticService implements Service
     private $position_word_repository;
     public function __construct()
     {
-
         $this->article_repository = new ArticleRepository();
         $this->position_word_repository = new PositionWordRepository();
     }

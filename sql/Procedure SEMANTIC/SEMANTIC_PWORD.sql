@@ -29,12 +29,13 @@ CREATE PROCEDURE SEMANTIC_PWORD(IN v_id_article INT, IN v_position INT, IN v_wor
       SELECT LAST_INSERT_ID() INTO v_id_synonym;
     END IF ;
 
-    IF (v_id_word IS NULL AND v_word IS NOT NULL) THEN
-      INSERT INTO word(id_word,word,id_synonym) VALUES(NULL,v_word,v_id_synonym);
-      SELECT LAST_INSERT_ID() INTO v_id_word;
-    ELSE
-        UPDATE word SET id_synonym = v_id_synonym WHERE id_word = v_id_word;
-    END IF ;
+    IF (v_id_word IS NULL) THEN
+      SELECT W.id_word  INTO v_id_word FROM position_word PW,word W
+      WHERE PW.id_word = W.id_word AND PW.id_article = v_id_article
+            AND PW.position = v_position;
+      UPDATE word SET id_synonym = v_id_synonym WHERE id_word = v_id_word;
+    END IF;
+
 
     IF (v_id_wiki IS NULL AND v_file_wiki IS NOT NULL) THEN
       INSERT INTO wiki(id_wiki,file_wiki) VALUES(NULL,v_file_wiki);
@@ -42,7 +43,7 @@ CREATE PROCEDURE SEMANTIC_PWORD(IN v_id_article INT, IN v_position INT, IN v_wor
     END IF ;
 
     SELECT position INTO v_position_up FROM position_word WHERE id_article = v_id_article AND position = v_position;
-    
+
     #IF (v_position_up IS NULL) THEN
     #  INSERT INTO position_word(position,id_article,title,id_word,id_wiki)
     #  VALUES(v_position,v_id_article,false,v_id_word,v_id_wiki);

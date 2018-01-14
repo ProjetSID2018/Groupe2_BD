@@ -12,14 +12,15 @@ namespace App\Persistence;
 use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class BelongRepository extends Repository
+class LabelRepository extends Repository
 {
-    public function store($data) {
+    public function store($id_article,$label) {
         try {
-            // Store in DB the data given
+
+            // Store the label for this article
             DB::select('CALL PBELONG(?,?)',array(
-                $data['id_article'],
-                $data['label'],
+                $id_article,
+                $label
             ));
 
             $this->response['message'] = "";

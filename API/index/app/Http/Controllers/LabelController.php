@@ -10,18 +10,18 @@ namespace App\Http\Controllers;
 
 
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\BelongService;
+use App\Services\LabelService;
 use Illuminate\Http\Request;
 
-class BelongController extends Controller
+class LabelController extends Controller
 {
     private $json_mapper;
-    private $belong_service;
+    private $label_service;
 
     public function __construct()
     {
         $this->json_mapper = new JsonMapper();
-        $this->belong_service = new BelongService();
+        $this->label_service = new LabelService();
     }
 
     /**
@@ -36,7 +36,7 @@ class BelongController extends Controller
         $raw_data = $this->json_mapper->json_mapper($request->all());
 
         // Return the appropriate message to client
-        return $this->parse($raw_data,$this->belong_service);
+        return $this->parse($raw_data,$this->label_service);
     }
 
 }

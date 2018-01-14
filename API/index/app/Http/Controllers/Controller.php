@@ -21,6 +21,6 @@ class Controller extends BaseController
             array_push($response,$service->store($data));
         };
 
-        return(response($response[0],200));
+        return(response($response,200));
     }
 }

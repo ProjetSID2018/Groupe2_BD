@@ -1,6 +1,6 @@
-#--Groupe 2
+#-- Group 2
 
-#--Table des tf par semaine
+#-- Table of tf per week
 
 CREATE TABLE IF NOT EXISTS `mv_term_frequency_week` (
   `id_word` int(11) NOT NULL,
@@ -14,13 +14,13 @@ ALTER TABLE `mv_term_frequency_week`
   ADD CONSTRAINT `fk_article_tf_week` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_word_tf_week` FOREIGN KEY (`id_word`) REFERENCES `word` (`id_word`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-#--Table des nombres d'articles par semaine
+#-- Table of numbers of articles per week
 
 CREATE TABLE IF NOT EXISTS `nb_articles_week` (
   `nb_articles` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#--Table des nombres d'articles par mot
+#-- Table of article numbers by word
 
 CREATE TABLE IF NOT EXISTS `nb_articles_word_week` (
   `id_word` int(11) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `nb_articles_word_week` (
 ALTER TABLE `nb_articles_word_week`
   ADD CONSTRAINT `fk_word_nb_articles_word_week` FOREIGN KEY (`id_word`) REFERENCES `word` (`id_word`) ON DELETE CASCADE ON UPDATE CASCADE;
   
-#--Table des idf par semaine
+#-- Table of idf per week
 
 CREATE TABLE IF NOT EXISTS `mv_inverse_document_frequency_week` (
   `id_word` int(11) NOT NULL,
@@ -43,7 +43,7 @@ ALTER TABLE `mv_inverse_document_frequency_week`
   ADD CONSTRAINT `fk_word_idf_week` FOREIGN KEY (`id_word`) REFERENCES `word` (`id_word`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
-#--Table des tf_idf par semaine
+#-- Table of tf_idf per week
 
 CREATE TABLE IF NOT EXISTS `mv_tf_idf_week` (
   `date_publication` date NOT NULL,

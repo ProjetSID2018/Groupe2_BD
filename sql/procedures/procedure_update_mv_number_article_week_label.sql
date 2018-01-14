@@ -1,11 +1,10 @@
-#-- Groupe 2
+#-- Group 2
 
 DROP PROCEDURE IF EXISTS update_mv_number_article_week_label;
 
 DELIMITER |
 #--
-#-- Procédures
-#-- Procédure de calcul du nombre d'articles par semaine et par theme
+#-- Procedure to update the number of articles per week and per theme
 #--
 CREATE IF NOT EXISTS PROCEDURE `update_mv_number_article_week_label`()
 BEGIN

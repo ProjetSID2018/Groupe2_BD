@@ -1,6 +1,6 @@
-#--Groupe 2
+#-- Group 2
 
-#--Procédure de calcul du tf par jour
+#-- Procedure to update the tf per day
 
 DROP PROCEDURE IF EXISTS update_mv_term_frequency_day;
 DELIMITER |
@@ -17,7 +17,9 @@ BEGIN
     CALL update_nb_articles();
 END |
 DELIMITER ;
-#--Procédure de calcul du nombre d'article par jour
+
+#-- Procedure to update the number of articles per day
+
 DROP PROCEDURE IF EXISTS update_nb_articles;
 DELIMITER |
 
@@ -33,7 +35,9 @@ BEGIN
     CALL update_nb_articles_word();
 END |
 DELIMITER ;
-#--Procédure de calcul du nombre d'article pour chaque mot 
+
+#-- Procedure to update the number of articles by word 
+
 DROP PROCEDURE IF EXISTS update_nb_articles_word;
 DELIMITER |
 
@@ -49,7 +53,9 @@ BEGIN
     CALL update_mv_inverse_document_frequency_day();
 END |
 DELIMITER ;
-#--Procédure de calcul de l'idf par jour
+
+#-- Procedure to update idf per day
+
 DROP PROCEDURE IF EXISTS update_mv_inverse_document_frequency_day;
 DELIMITER |
 
@@ -65,7 +71,9 @@ BEGIN
     CALL update_mv_tf_idf_day();
 END |
 DELIMITER ;
-#--Procédure de calcul du tf_idf par jour
+
+#-- Procedure to update tf_idf per day
+
 DROP PROCEDURE IF EXISTS update_mv_tf_idf_day;
 DELIMITER |
 

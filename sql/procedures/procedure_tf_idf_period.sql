@@ -1,10 +1,11 @@
-#--Groupe 2
+#-- Group 2
 
-#--Procédure de calcul du tf pour une periode donnée 
+#-- Procedure to update the tf per period
+
 DROP PROCEDURE IF EXISTS update_mv_term_frequency_period;
 DELIMITER |
 
-CREATE PROCEDURE `update_mv_term_frequency_period`(date_debut DATE, date_fin DATE)
+CREATE PROCEDURE `update_mv_term_frequency_period`(IN date_debut DATE, IN date_fin DATE)
 BEGIN
    TRUNCATE mv_term_frequency_period;
 
@@ -18,7 +19,8 @@ BEGIN
 END |
 DELIMITER ;
 
-#--Procédure de calcul du nombre d'article pour la periode 
+#-- Procedure to update the number of articles per period
+
 DROP PROCEDURE IF EXISTS update_nb_articles_period;
 DELIMITER |
 
@@ -34,7 +36,8 @@ BEGIN
 END |
 DELIMITER ;
 
-#--Procédure de calcul du nombre d'article pour chaque mot 
+#-- Procedure to update the number of articles by word 
+
 DROP PROCEDURE IF EXISTS update_nb_articles_word_period;
 DELIMITER |
 
@@ -51,7 +54,8 @@ BEGIN
 END |
 DELIMITER ;
 
-#--Procédure de calcul de l'idf pour la periode
+#-- Procedure to update idf per period
+
 DROP PROCEDURE IF EXISTS update_mv_inverse_document_frequency_period;
 DELIMITER |
 
@@ -67,7 +71,8 @@ BEGIN
 END |
 DELIMITER ;
 
-#--Procédure de calcul du tf_idf pour la periode
+#-- Procedure to update tf_idf per period
+
 DROP PROCEDURE IF EXISTS update_mv_tf_idf_period;
 DELIMITER |
 

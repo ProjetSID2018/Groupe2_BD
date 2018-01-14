@@ -1,6 +1,6 @@
-#--Groupe 2
+#-- Group 2
 
-#--Table des tf par periode
+#-- Table of tf per period
 
 CREATE TABLE IF NOT EXISTS `mv_term_frequency_period` (
   `id_word` int(11) NOT NULL,
@@ -14,13 +14,13 @@ ALTER TABLE `mv_term_frequency_period`
   ADD CONSTRAINT `fk_article_tf_period` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_word_tf_period` FOREIGN KEY (`id_word`) REFERENCES `word` (`id_word`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-#--Table des nombres d'articles par periode
+#-- Table of numbers of articles per period
 
 CREATE TABLE IF NOT EXISTS `nb_articles_period` (
   `nb_articles` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#--Table des nombres d'articles par mot
+#-- Table of article numbers by word
 
 CREATE TABLE IF NOT EXISTS `nb_articles_word_period` (
   `id_word` int(11) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `nb_articles_word_period` (
 ALTER TABLE `nb_articles_word_period`
   ADD CONSTRAINT `fk_word_nb_articles_word_period` FOREIGN KEY (`id_word`) REFERENCES `word` (`id_word`) ON DELETE CASCADE ON UPDATE CASCADE;
   
-#--Table des idf par periode
+#-- Table of idf per period
 
 CREATE TABLE IF NOT EXISTS `mv_inverse_document_frequency_period` (
   `id_word` int(11) NOT NULL,
@@ -43,11 +43,9 @@ ALTER TABLE `mv_inverse_document_frequency_period`
   ADD CONSTRAINT `fk_word_idf_period` FOREIGN KEY (`id_word`) REFERENCES `word` (`id_word`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
-#--Table des tf_idf par periode
+#-- Table of tf_idf per period
 
 CREATE TABLE IF NOT EXISTS `mv_tf_idf_period` (
-  `date_debut_period` date NOT NULL,
-  `date_fin_period` date NOT NULL,
   `date_publication` date NOT NULL,
   `id_word` int(11) NOT NULL,
   `id_article` int(11) NOT NULL,

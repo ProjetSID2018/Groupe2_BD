@@ -1,9 +1,10 @@
-#--Groupe 2
+#-- Group 2
 
-#-- Nécessaire pour le lancement des evenements
+#-- Needed for launching events
+
 SET GLOBAL event_scheduler = ON;
 
-#--Création de l'événement pour calculer les tf_idf chaque mois 
+#-- Event triggering the procedure to update tf_idf per month
 
 DELIMITER |
 

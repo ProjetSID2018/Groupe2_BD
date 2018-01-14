@@ -1,8 +1,7 @@
-#-- Groupe 2
+#-- Group 2
 
 #--
-#-- Structure de la vue matérialisée `mv_number_article_week_label` pour stocker le nombre d'articles publiés par semaine
-#-- et par theme
+#-- Structure of the materialized view `mv_number_article_week` to store the number of articles published per week and  per theme
 #--
 
 CREATE TABLE IF NOT EXISTS `mv_number_article_week_label` (
@@ -12,7 +11,8 @@ CREATE TABLE IF NOT EXISTS `mv_number_article_week_label` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #--
-#-- Contrainte de la clé étrangère
+#-- Foreign key constraint
+#--
 
 ALTER TABLE `mv_number_article_week_label`
   ADD CONSTRAINT `fk_article_label` FOREIGN KEY (`id_label`) REFERENCES `label` (`id_label`) ON DELETE CASCADE ON UPDATE CASCADE;

@@ -1,12 +1,12 @@
-#-- GROUPE 2
+#-- Group 2
 
-#-- Nécessaire pour le lancement des evenements
+#-- Needed for launching events
+
 SET GLOBAL event_scheduler = ON;
 
 DELIMITER |
 #--
-#-- Événements
-#-- Evenement qui déclenche la procédure de mise à jour du nombre d'article de la semaine et par theme
+#-- Event triggering the procedure to update the article number of the week per theme
 #--
 CREATE EVENT IF NOT EXISTS `e_article_number_week_label` 
 	ON SCHEDULE EVERY 1 WEEK STARTS '2018-01-08 00:00:01' 

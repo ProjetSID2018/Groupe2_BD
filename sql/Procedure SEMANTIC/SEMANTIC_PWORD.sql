@@ -41,13 +41,13 @@ CREATE PROCEDURE SEMANTIC_PWORD(IN v_id_article INT, IN v_position INT, IN v_wor
       SELECT LAST_INSERT_ID() INTO v_id_wiki;
     END IF ;
 
-
-
     SELECT position INTO v_position_up FROM position_word WHERE id_article = v_id_article AND position = v_position;
-    IF (v_position_up IS NULL) THEN
-      INSERT INTO position_word(position,id_article,title,id_word,id_wiki)
-      VALUES(v_position,v_id_article,false,v_id_word,v_id_wiki);
-    ELSE
+    
+    #IF (v_position_up IS NULL) THEN
+    #  INSERT INTO position_word(position,id_article,title,id_word,id_wiki)
+    #  VALUES(v_position,v_id_article,false,v_id_word,v_id_wiki);
+    #ELSE
+    IF (v_position_up IS NOT NULL) THEN
       UPDATE position_word
       SET
         id_word = v_id_word,

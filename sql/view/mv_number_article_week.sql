@@ -1,7 +1,7 @@
-#-- Groupe 2
+#-- Group 2
 
 #--
-#-- Structure de la vue matérialisée `mv_number_article_week` pour stocker le nombre d'articles publiés par semaine
+#-- Structure of the materialized view `mv_number_article_week` to store the number of articles published per week
 #--
 
 CREATE TABLE IF NOT EXISTS `mv_number_article_week` (

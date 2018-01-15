@@ -19,7 +19,7 @@ CREATE TABLE article(
         rate_surprise     Float ,
         rate_disgust      Float ,
         rate_subjectivity Float ,
-        is_positive       Bool ,
+        is_positive       Boolean ,
         id_newspaper      Int NOT NULL ,
         PRIMARY KEY (id_article )
 )ENGINE=InnoDB;
@@ -31,7 +31,7 @@ CREATE TABLE article(
 
 CREATE TABLE newspaper(
         id_newspaper   int (11) Auto_increment  NOT NULL ,
-        name_newspaper Varchar (50) ,
+        name_newspaper Varchar (50) NOT NULL,
         link_newspaper Varchar (2083) ,
         link_logo      Varchar (2083) ,
         PRIMARY KEY (id_newspaper ) ,
@@ -106,7 +106,7 @@ CREATE TABLE word(
 
 CREATE TABLE pos_tagging(
         id_pos_tag int (11) Auto_increment  NOT NULL ,
-        pos_tag    Varchar (25) ,
+        pos_tag    Varchar (25),
         PRIMARY KEY (id_pos_tag ) ,
         UNIQUE (pos_tag )
 )ENGINE=InnoDB;
@@ -117,14 +117,14 @@ CREATE TABLE pos_tagging(
 #------------------------------------------------------------
 
 CREATE TABLE position_word(
-        position   Int NOT NULL ,
-        title      Bool NOT NULL ,
-        id_word    Int NOT NULL ,
-        id_entity  Int NOT NULL ,
-        id_pos_tag Int NOT NULL ,
-        id_article Int NOT NULL ,
-        id_wiki    Int NOT NULL ,
-        PRIMARY KEY (position )
+        position   Int NOT NULL,
+        title      Boolean,
+        id_word    Int NOT NULL,
+        id_entity  Int,
+        id_pos_tag Int,
+        id_article Int NOT NULL,
+        id_wiki    Int,
+        PRIMARY KEY (position, id_article)
 )ENGINE=InnoDB;
 
 
@@ -167,6 +167,7 @@ CREATE TABLE realize(
 #------------------------------------------------------------
 
 CREATE TABLE belong(
+        strongest_label Bool  NOT NULL,
         id_article Int NOT NULL ,
         id_label   Int NOT NULL ,
         PRIMARY KEY (id_article ,id_label )
@@ -179,9 +180,11 @@ CREATE TABLE belong(
 
 CREATE TABLE common(
         id_synonym Int NOT NULL ,
+        id_article Int NOT NULL ,
         position   Int NOT NULL ,
-        PRIMARY KEY (id_synonym ,position )
+        PRIMARY KEY (id_synonym, id_article, position)
 )ENGINE=InnoDB;
+
 
 
 #------------------------------------------------------------
@@ -208,5 +211,6 @@ ALTER TABLE belong ADD CONSTRAINT FK_belong_id_article FOREIGN KEY (id_article) 
 ALTER TABLE belong ADD CONSTRAINT FK_belong_id_label FOREIGN KEY (id_label) REFERENCES label(id_label);
 ALTER TABLE common ADD CONSTRAINT FK_common_id_synonym FOREIGN KEY (id_synonym) REFERENCES synonym(id_synonym);
 ALTER TABLE common ADD CONSTRAINT FK_common_position FOREIGN KEY (position) REFERENCES position_word(position);
+ALTER TABLE common ADD CONSTRAINT FK_common_id_article FOREIGN KEY (id_article) REFERENCES position_word(id_article);
 ALTER TABLE is_bigram ADD CONSTRAINT FK_is_bigram_id_word FOREIGN KEY (id_word) REFERENCES word(id_word);
 ALTER TABLE is_bigram ADD CONSTRAINT FK_is_bigram_id_article FOREIGN KEY (id_article) REFERENCES article(id_article);

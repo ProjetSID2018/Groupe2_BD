@@ -14,13 +14,14 @@ use Illuminate\Support\Facades\DB;
 
 class LabelRepository extends Repository
 {
-    public function store($id_article,$label) {
+    public function store($id_article,$label,$strongest_label) {
         try {
 
             // Store the label for this article
             DB::select('CALL PBELONG(?,?)',array(
                 $id_article,
-                $label
+                $label,
+                $strongest_label
             ));
 
             $this->response['message'] = "";

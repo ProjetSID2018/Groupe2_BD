@@ -27,9 +27,13 @@ class LabelService implements  Service
         }
 
         if(is_array($data['label'])) {
-            foreach ($data['label'] as $label) {
-                array_push($repository_response,$this->belong_repository->store($data['id_article'],$label));
+
+            for ($i = 0; $i < count($data['label']) ; $i++) {
+                array_push($repository_response,$this->belong_repository->store(
+                    $data['id_article'],$data['label'][$i],$data['strongest_label'][$i])
+                );
             }
+
         }
 
         return $repository_response;

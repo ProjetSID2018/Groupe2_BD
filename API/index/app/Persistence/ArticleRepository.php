@@ -23,18 +23,21 @@ class ArticleRepository extends Repository
             $results = DB::select('Select @id_article as id_article');
 
             // Store the authors for this article
+
             if (is_string(($data['surname_author']))) {
                 DB::select('CALL FILTERING_PAUTHOR(?,?,?)',array(
                     $results[0]->id_article,
                     $data['surname_author'],
-                    NULL
+                    $data['firstname_author']
                 ));
-            } else {
+            }
+
+            if(is_array($data['surname_author'])) {
                 foreach ($data['surname_author'] as $surname_author) {
                     DB::select('CALL FILTERING_PAUTHOR(?,?,?)',array(
                         $results[0]->id_article,
                         $surname_author,
-                        NULL
+                        $data['firstname_author']
                     ));
                 }
             }

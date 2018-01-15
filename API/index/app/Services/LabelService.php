@@ -21,13 +21,15 @@ class LabelService implements  Service
         // Need validation steps for the data
 
         $repository_response=array();
+
         if(is_string($data['label'])) {
             array_push($repository_response,$this->belong_repository->store($data['id_article'],$data['label']));
-        } else {
+        }
+
+        if(is_array($data['label'])) {
             foreach ($data['label'] as $label) {
                 array_push($repository_response,$this->belong_repository->store($data['id_article'],$label));
             }
-
         }
 
         return $repository_response;

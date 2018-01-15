@@ -15,7 +15,7 @@ CREATE PROCEDURE SEMANTIC_PSYNONYM (IN v_id_article INT, IN v_position INT,v_syn
 			SELECT LAST_INSERT_ID() INTO v_id_synonym;
 		END IF;
 
-		INSERT INTO common(id_synonym,position,id_article) VALUES (v_synonym,v_position,v_id_article);
+		INSERT INTO common(id_synonym,position,id_article) VALUES (v_id_synonym,v_position,v_id_article);
 		
 		COMMIT;
 

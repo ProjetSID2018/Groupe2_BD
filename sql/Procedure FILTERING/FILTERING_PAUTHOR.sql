@@ -11,7 +11,8 @@ CREATE PROCEDURE FILTERING_PAUTHOR (IN vid_article INT, IN v_surname_author VARC
 
 		SELECT a.id_author INTO vid_author
 		FROM author a
-		WHERE a.surname_author = v_surname_author;
+		WHERE a.surname_author = v_surname_author
+		AND  a.firstname_author = v_surname_author;
 
 		IF (vid_author IS NULL AND v_surname_author IS NOT NULL)  THEN
 			INSERT INTO author (id_author, surname_author, firstname_author) VALUES (NULL, v_surname_author,v_firstname_author);

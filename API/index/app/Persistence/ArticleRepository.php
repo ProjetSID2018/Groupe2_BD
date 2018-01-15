@@ -24,7 +24,7 @@ class ArticleRepository extends Repository
 
             // Store the authors for this article
 
-            if (is_string(($data['surname_author']))) {
+            if (is_string(($data['surname_author'])) && is_string(($data['firstname_author']))) {
                 DB::select('CALL FILTERING_PAUTHOR(?,?,?)',array(
                     $results[0]->id_article,
                     $data['surname_author'],
@@ -33,13 +33,14 @@ class ArticleRepository extends Repository
             }
 
             if(is_array($data['surname_author'])) {
-                foreach ($data['surname_author'] as $surname_author) {
+                for ($i = 0 ; $i< count($data['surname_author']) ; $i++) {
                     DB::select('CALL FILTERING_PAUTHOR(?,?,?)',array(
                         $results[0]->id_article,
-                        $surname_author,
-                        $data['firstname_author']
+                        $data['surname_author'][$i],
+                        $data['firstname_author'][$i]
                     ));
                 }
+
             }
 
             // Send the id_article in json format to client

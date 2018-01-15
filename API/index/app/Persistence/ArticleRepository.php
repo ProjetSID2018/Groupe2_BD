@@ -60,7 +60,7 @@ class ArticleRepository extends Repository
     public function update($data) {
         try {
             // Update the article
-            DB::select('CALL SEMANTIC_PARTICLE(?,?,?,?,?,?,?,?,?)',array(
+            DB::select('CALL SEMANTIC_PARTICLE(?,?,?,?,?,?,?,?,?,?,?)',array(
                 $data['id_article'],
                 $data['rate_positivity'],
                 $data['rate_negativity'],
@@ -69,7 +69,9 @@ class ArticleRepository extends Repository
                 $data['rate_sadness'],
                 $data['rate_angry'],
                 $data['rate_surprise'],
-                $data['rate_disgust']
+                $data['rate_disgust'],
+                $data['rate_subjectivity'],
+                $data['is_positive']
             ));
 
             // Send the id_article in json format to client

@@ -18,7 +18,7 @@ class LabelRepository extends Repository
         try {
 
             // Store the label for this article
-            DB::select('CALL PBELONG(?,?)',array(
+            DB::select('CALL PBELONG(?,?,?)',array(
                 $id_article,
                 $label,
                 $strongest_label

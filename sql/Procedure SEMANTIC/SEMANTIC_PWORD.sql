@@ -18,14 +18,10 @@ CREATE PROCEDURE SEMANTIC_PWORD(IN v_id_article INT, IN v_position INT, IN v_wor
     WHERE file_wiki = v_file_wiki;
 
     # If the word doesn't exist, we can't add a wiki
-    IF (v_id_word IS NOT NULL) THEN
-
-      IF (v_id_wiki IS NULL AND v_file_wiki IS NOT NULL) THEN
-        INSERT INTO wiki(id_wiki,file_wiki) VALUES(NULL,v_file_wiki);
-        SELECT LAST_INSERT_ID() INTO v_id_wiki;
-      END IF;
+    IF (v_id_word IS NOT NULL AND v_id_wiki IS NULL AND v_file_wiki IS NOT NULL) THEN
+      INSERT INTO wiki(id_wiki,file_wiki) VALUES(NULL,v_file_wiki);
+      SELECT LAST_INSERT_ID() INTO v_id_wiki;
     END IF;
-
 
     # If the word doesn't exist, we get the id_word for the article and the postion choosen
     IF (v_id_word IS NULL) THEN

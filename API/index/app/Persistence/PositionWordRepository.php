@@ -41,14 +41,30 @@ class PositionWordRepository extends Repository
 
         try {
             // Store in DB the data given
-            DB::select('CALL SEMANTIC_PWORD(?,?,?,?,?)',array(
+            DB::select('CALL SEMANTIC_PWORD(?,?,?,?)',array(
                 $id_article,
                 $data['position'],
                 $data['word'],
                 $data['file_wiki'],
-                $data['synonym']
-
             ));
+
+            if (is_string($data['synonym'])) {
+                DB::select('CALL SEMANTIC_PSYNONYM(?,?,?)', array(
+                    $id_article,
+                    $data['position'],
+                    $data['synonym']
+                ));
+            }
+
+            if (is_array($data['synonym'])) {
+                foreach($data['synonym'] as $synonym) {
+                    DB::select('CALL SEMANTIC_PSYNONYM(?,?,?)', array(
+                        $id_article,
+                        $data['position'],
+                        $synonym
+                    ));
+                }
+            }
 
             $this->response['message'] = "";
             $this->response['code'] =  Repository::$CREATION_SUCCEEDED;

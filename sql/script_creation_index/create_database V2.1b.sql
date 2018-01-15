@@ -31,7 +31,7 @@ CREATE TABLE article(
 
 CREATE TABLE newspaper(
         id_newspaper   int (11) Auto_increment  NOT NULL ,
-        name_newspaper Varchar (50) ,
+        name_newspaper Varchar (50) NOT NULL,
         link_newspaper Varchar (2083) ,
         link_logo      Varchar (2083) ,
         PRIMARY KEY (id_newspaper ) ,
@@ -179,8 +179,9 @@ CREATE TABLE belong(
 
 CREATE TABLE common(
         id_synonym Int NOT NULL ,
+        id_article Int NOT NULL ,
         position   Int NOT NULL ,
-        PRIMARY KEY (id_synonym ,position )
+        PRIMARY KEY (id_synonym, id_article, position)
 )ENGINE=InnoDB;
 
 ALTER TABLE article ADD CONSTRAINT FK_article_id_newspaper FOREIGN KEY (id_newspaper) REFERENCES newspaper(id_newspaper);
@@ -196,3 +197,4 @@ ALTER TABLE belong ADD CONSTRAINT FK_belong_id_article FOREIGN KEY (id_article) 
 ALTER TABLE belong ADD CONSTRAINT FK_belong_id_label FOREIGN KEY (id_label) REFERENCES label(id_label);
 ALTER TABLE common ADD CONSTRAINT FK_common_id_synonym FOREIGN KEY (id_synonym) REFERENCES synonym(id_synonym);
 ALTER TABLE common ADD CONSTRAINT FK_common_position FOREIGN KEY (position) REFERENCES position_word(position);
+ALTER TABLE common ADD CONSTRAINT FK_common_id_article FOREIGN KEY (id_article) REFERENCES position_word(id_article);

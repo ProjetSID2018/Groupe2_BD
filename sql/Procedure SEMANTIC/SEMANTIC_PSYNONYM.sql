@@ -11,7 +11,7 @@ CREATE PROCEDURE SEMANTIC_PSYNONYM (IN v_id_article INT, IN v_position INT,v_syn
 		WHERE s.synonym = v_synonym;
 
 		IF (v_id_synonym IS NULL AND v_synonym IS NOT NULL)  THEN
-			INSERT INTO synonym (id_synonym, v_synonym) VALUES (NULL, v_synonym);
+			INSERT INTO synonym (id_synonym, synonym) VALUES (NULL, v_synonym);
 			SELECT LAST_INSERT_ID() INTO v_id_synonym;
 		END IF;
 

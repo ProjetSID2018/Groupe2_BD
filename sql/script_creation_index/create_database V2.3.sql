@@ -186,18 +186,6 @@ CREATE TABLE common(
 )ENGINE=InnoDB;
 
 
-
-#------------------------------------------------------------
-# Table: is_bigram
-#------------------------------------------------------------
-
-CREATE TABLE is_bigram(
-        number_occurence Int NOT NULL ,
-        id_word          Int NOT NULL ,
-        id_article       Int NOT NULL ,
-        PRIMARY KEY (id_word ,id_article )
-)ENGINE=InnoDB;
-
 ALTER TABLE article ADD CONSTRAINT FK_article_id_newspaper FOREIGN KEY (id_newspaper) REFERENCES newspaper(id_newspaper);
 ALTER TABLE word ADD CONSTRAINT FK_word_id_lemma FOREIGN KEY (id_lemma) REFERENCES lemma(id_lemma);
 ALTER TABLE position_word ADD CONSTRAINT FK_position_word_id_word FOREIGN KEY (id_word) REFERENCES word(id_word);
@@ -212,5 +200,3 @@ ALTER TABLE belong ADD CONSTRAINT FK_belong_id_label FOREIGN KEY (id_label) REFE
 ALTER TABLE common ADD CONSTRAINT FK_common_id_synonym FOREIGN KEY (id_synonym) REFERENCES synonym(id_synonym);
 ALTER TABLE common ADD CONSTRAINT FK_common_position FOREIGN KEY (position) REFERENCES position_word(position);
 ALTER TABLE common ADD CONSTRAINT FK_common_id_article FOREIGN KEY (id_article) REFERENCES position_word(id_article);
-ALTER TABLE is_bigram ADD CONSTRAINT FK_is_bigram_id_word FOREIGN KEY (id_word) REFERENCES word(id_word);
-ALTER TABLE is_bigram ADD CONSTRAINT FK_is_bigram_id_article FOREIGN KEY (id_article) REFERENCES article(id_article);

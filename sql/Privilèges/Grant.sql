@@ -12,7 +12,7 @@ ON bd_index.*
 TO 'test'@'localhost';
 
 
--- Si l'utilisateur veut supprimer les droits 
+-- Si l'administrateur veut supprimer les droits 
 -- de Select, insert, update après lui avoir autorisé.
 
 REVOKE SELECT, INSERT, UPDATE

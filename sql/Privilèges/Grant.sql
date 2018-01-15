@@ -1,30 +1,21 @@
-base_de_données1_7
+-- Création Utilisateur et admission des droits.
 
-CREATE USER 'yolo'@'localhost' 
-IDENTIFIED BY 'yolo'
+CREATE USER 'test'@'localhost'
+IDENTIFIED BY 'test';
 
+GRANT SELECT, INSERT, UPDATE
+ON bd_index.*
+TO 'test'@'localhost';
 
-GRANT SELECT, INSERT 
-ON base_de_données1_7.* 
-TO 'yolo'@'localhost';
-
-GRANT SELECT 
-ON TABLE base_de_données1_7.*
-TO 'yolo'@'localhost' IDENTIFIED BY 'yolo'
-
-GRANT CREATE ROUTINE, EXECUTE
-ON base_de_données1_7.*
-TO 'yolo'@'localhost';
-
-GRANT DELETE
-ON base_de_données1_7.*
-TO 'yolo'@'localhost';
-
-REVOKE DELETE, INSERT
-ON base_de_données1_7.*
-FROM 'yolo'@'localhost';
+GRANT EXECUTE
+ON bd_index.*
+TO 'test'@'localhost';
 
 
+-- Si l'utilisateur veut supprimer les droits 
+-- de Select, insert, update après lui avoir autorisé.
 
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
-GRANT PROXY ON ''@'' TO 'root'@'localhost' WITH GRANT OPTION;
+REVOKE SELECT, INSERT, UPDATE
+ON bd_index.*
+FROM 'test'@'localhost';
+

@@ -21,26 +21,22 @@ class ArticleRepository extends Repository
 
             // Get the output variable from the procedure
             $results = DB::select('Select @id_article as id_article');
-
             // Store the authors for this article
 
-            if (is_string(($data['surname_author'])) && is_string(($data['firstname_author']))) {
-                DB::select('CALL FILTERING_PAUTHOR(?,?,?)',array(
+            if(count($data['surname_author']) == 1) {
+                DB::select('CALL FILTERING_PAUTHOR(?,?)',array(
                     $results[0]->id_article,
-                    $data['surname_author'],
-                    $data['firstname_author']
+                    $data['surname_author'][0]
                 ));
-            }
-
-            if(is_array($data['surname_author'])) {
-                for ($i = 0 ; $i< count($data['surname_author']) ; $i++) {
-                    DB::select('CALL FILTERING_PAUTHOR(?,?,?)',array(
-                        $results[0]->id_article,
-                        $data['surname_author'][$i],
-                        $data['firstname_author'][$i]
-                    ));
+            } else {
+                if(is_array($data['surname_author'])) {
+                    for ($i = 0 ; $i< count($data['surname_author']) ; $i++) {
+                        DB::select('CALL FILTERING_PAUTHOR(?,?)',array(
+                            $results[0]->id_article,
+                            $data['surname_author'][$i]
+                        ));
+                    }
                 }
-
             }
 
             // Send the id_article in json format to client

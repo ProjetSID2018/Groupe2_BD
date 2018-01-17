@@ -118,12 +118,12 @@ CREATE TABLE pos_tagging(
 
 CREATE TABLE position_word(
         position     Int NOT NULL ,
-        title        Bool NOT NULL ,
+        title        Boolean ,
         id_article   Int NOT NULL ,
         id_word      Int NOT NULL ,
-        id_entity    Int NOT NULL ,
-        id_pos_tag   Int NOT NULL ,
-        id_wiki      Int NOT NULL ,
+        id_entity    Int,
+        id_pos_tag   Int ,
+        id_wiki      Int ,
         PRIMARY KEY (position ,id_article )
 )ENGINE=InnoDB;
 
@@ -146,7 +146,7 @@ CREATE TABLE synonym(
 
 CREATE TABLE wiki(
         id_wiki   int (11) Auto_increment  NOT NULL ,
-        file_wiki Varchar (2803) NOT NULL ,
+        file_wiki Varchar (2083) NOT NULL ,
         PRIMARY KEY (id_wiki )
 )ENGINE=InnoDB;
 

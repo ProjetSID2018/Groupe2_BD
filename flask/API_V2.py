@@ -13,9 +13,9 @@ api = Api(app)
 
 # MySQL configurations
 servername = "localhost"
-username = "DBIndex_user"
-passwordDB = "password_DBIndex_user"
-databasename = "DBIndex"
+username = "root"
+passwordDB = "sidiots"
+databasename = "index"
 
 db = MySQLdb.connect(user = username, passwd = passwordDB, host = servername, db = databasename)
 
@@ -30,7 +30,6 @@ def filtering():
 			id_article = call_pfiltering_article(date_publication, name_newspaper)
 		except : 
 			print('Unable to insert article')
-			id_article = 0
 
 		for surname_author in list_surname_author:
 			try : 
@@ -51,7 +50,7 @@ def filtering():
 			except: 
 				print('Unable to insert word')
 			
-
+	
 	result = json.dumps([[{"message":{"id_article" : id_article}}]])
 
 	
@@ -187,4 +186,5 @@ def call_pbelong(id_article, label, strongest_label):
 	print(cursor.execute(query))
 
 if __name__ == '__main__':
-	app.run(host="localhost", port = 5005, debug = True)
+	#app.run(host="localhost", port = 5005, debug = True)
+	app.run(host="0.0.0.0", port=5005, threaded=True, debug=True)

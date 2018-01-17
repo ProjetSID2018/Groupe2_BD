@@ -5,7 +5,7 @@ CREATE PROCEDURE FILTERING_PARTICLE (IN v_date_publication DATE,IN v_name_newspa
 
 BEGIN
 
-	DECLARE v_id_newspaper INT;<pù*ù*
+	DECLARE v_id_newspaper INT;
 
 	SELECT id_newspaper INTO v_id_newspaper
     FROM newspaper
@@ -24,5 +24,5 @@ BEGIN
 
 	SELECT LAST_INSERT_ID() INTO v_id_article;
 
-
+    COMMIT;
 END/

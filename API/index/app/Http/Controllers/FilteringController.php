@@ -36,8 +36,8 @@ class FilteringController extends Controller
         // Parse automatically the json sent by client
         $raw_data = $this->json_mapper->json_mapper($request->all());
 
-
         // Return the appropriate message to client
         return $this->parse($raw_data,$this->filtering_service);
+
     }
 }

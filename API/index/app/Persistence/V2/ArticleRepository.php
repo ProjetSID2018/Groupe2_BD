@@ -20,15 +20,15 @@ class ArticleRepository extends Repository
             ));
 
             // Get the output variable from the procedure
-            $results = DB::select('Select @id_article as id_article');
+            $results = DB::select('SELECT @id_article as id_article');
+
+
             // Store the authors for this article
-
-
             if(is_array($data['surname_author'])) {
-                for ($i = 0 ; $i< count($data['surname_author']) ; $i++) {
+                foreach($data['surname_author'] as $surname_author) {
                     DB::select('CALL FILTERING_PAUTHOR(?,?)',array(
                         $results[0]->id_article,
-                        $data['surname_author'][$i]
+                        $surname_author
                     ));
                 }
             }

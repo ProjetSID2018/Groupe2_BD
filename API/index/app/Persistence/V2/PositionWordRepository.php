@@ -48,14 +48,6 @@ class PositionWordRepository extends Repository
                 $data['file_wiki'],
             ));
 
-            if (is_string($data['synonym'])) {
-                DB::select('CALL SEMANTIC_PSYNONYM(?,?,?)', array(
-                    $id_article,
-                    $data['position'],
-                    $data['synonym']
-                ));
-            }
-
             if (is_array($data['synonym'])) {
                 foreach($data['synonym'] as $synonym) {
                     DB::select('CALL SEMANTIC_PSYNONYM(?,?,?)', array(

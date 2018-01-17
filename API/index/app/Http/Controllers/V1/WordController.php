@@ -2,27 +2,28 @@
 /**
  * Created by PhpStorm.
  * User: Utilisateur
- * Date: 12/01/2018
- * Time: 19:12
+ * Date: 08/01/2018
+ * Time: 17:57
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
 
+use App\Http\Controllers\Controller;
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\V2\FilteringService;
+use App\Services\V1\WordService;
 use Illuminate\Http\Request;
 
-class FilteringController extends Controller
+class WordController extends Controller
 {
 
     private $json_mapper;
-    private $filtering_service;
+    private $word_service;
 
     public function __construct()
     {
         $this->json_mapper = new JsonMapper();
-        $this->filtering_service = new FilteringService();
+        $this->word_service = new WordService();
     }
 
     /**
@@ -36,8 +37,7 @@ class FilteringController extends Controller
         // Parse automatically the json sent by client
         $raw_data = $this->json_mapper->json_mapper($request->all());
 
-
         // Return the appropriate message to client
-        return $this->parse($raw_data,$this->filtering_service);
+        return $this->parse($raw_data,$this->word_service);
     }
 }

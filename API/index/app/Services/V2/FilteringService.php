@@ -6,10 +6,12 @@
  * Time: 19:14
  */
 
-namespace App\Services;
+namespace App\Services\V2;
 
-use App\Persistence\ArticleRepository;
-use App\Persistence\PositionWordRepository;
+
+use App\Persistence\V2\ArticleRepository;
+use App\Persistence\V2\PositionWordRepository;
+use App\Services\Service;
 
 
 class FilteringService implements  Service

@@ -5,9 +5,11 @@
  * Date: 08/01/2018
  * Time: 18:09
  */
-namespace App\Services;
+namespace App\Services\V1;
 
-use App\Persistence\ArticleRepository;
+
+
+use App\Persistence\V2\ArticleRepository;
 
 class ArticleService
 {

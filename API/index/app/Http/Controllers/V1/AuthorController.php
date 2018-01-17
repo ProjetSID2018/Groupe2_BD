@@ -1,21 +1,29 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Utilisateur
+ * Date: 08/01/2018
+ * Time: 17:53
+ */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
+
+use App\Http\Controllers\Controller;
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\EntityService;
+use App\Services\V1\AuthorService;
 use Illuminate\Http\Request;
 
-class EntityController extends Controller
+class AuthorController extends Controller
 {
 
-   private $json_mapper;
-   private $entity_service;
+    private $json_mapper;
+    private $author_service;
 
     public function __construct()
     {
         $this->json_mapper = new JsonMapper();
-        $this->entity_service = new EntityService();
+        $this->author_service = new AuthorService();
     }
 
     /**
@@ -30,8 +38,6 @@ class EntityController extends Controller
         $raw_data = $this->json_mapper->json_mapper($request->all());
 
         // Return the appropriate message to client
-        return $this->parse($raw_data,$this->entity_service);
+        return $this->parse($raw_data,$this->author_service);
     }
-
-
 }

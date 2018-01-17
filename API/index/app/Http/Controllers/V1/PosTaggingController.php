@@ -6,11 +6,12 @@
  * Time: 17:59
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
 
+use App\Http\Controllers\Controller;
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\PosTaggingService;
+use App\Services\V1\PosTaggingService;
 use Illuminate\Http\Request;
 
 class PosTaggingController extends Controller

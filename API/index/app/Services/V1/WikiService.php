@@ -5,9 +5,10 @@
  * Date: 09/01/2018
  * Time: 10:35
  */
-namespace App\Services;
+namespace App\Services\V1;
 
-use App\Persistence\WikiRepository;
+
+use App\Persistence\V1\WikiRepository;
 
 class WikiService
 {

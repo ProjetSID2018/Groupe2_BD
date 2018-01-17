@@ -10,7 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\SemanticService;
+use App\Services\V2\SemanticService;
 use Illuminate\Http\Request;
 
 class SemanticController extends Controller

@@ -10,7 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\LabelService;
+use App\Services\V2\LabelService;
 use Illuminate\Http\Request;
 
 class LabelController extends Controller

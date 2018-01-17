@@ -5,9 +5,9 @@
  * Date: 08/01/2018
  * Time: 18:11
  */
-namespace App\Services;
+namespace App\Services\V1;
 
-use App\Persistence\WordRepository;
+use App\Persistence\V1\WordRepository;
 
 class WordService
 {

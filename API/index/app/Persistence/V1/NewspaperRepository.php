@@ -2,33 +2,28 @@
 /**
  * Created by PhpStorm.
  * User: Utilisateur
- * Date: 09/01/2018
- * Time: 14:39
+ * Date: 08/01/2018
+ * Time: 18:07
  */
-
-namespace App\Persistence;
-
-
+namespace App\Persistence\V1;
 use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class LabelRepository extends Repository
+class NewspaperRepository extends Repository
 {
-    public function store($id_article,$label,$strongest_label) {
+    public function store($data) {
         try {
-
-            // Store the label for this article
-            DB::select('CALL PBELONG(?,?,?)',array(
-                $id_article,
-                $label,
-                $strongest_label
+            // Store in DB the data given
+            DB::select('CALL PNEWSPAPER(?,?,?)',array(
+                $data['name_newspaper'],
+                $data['link_newspaper'],
+                $data['link_logo']
             ));
 
             $this->response['message'] = "";
             $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
             return $this->response;
-
         } catch (\PDOException $e) {
             // Get the pdo exception message
             $this->response['message'] = $e->getMessage();

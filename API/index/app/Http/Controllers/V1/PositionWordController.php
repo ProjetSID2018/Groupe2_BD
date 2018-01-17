@@ -3,26 +3,26 @@
  * Created by PhpStorm.
  * User: Utilisateur
  * Date: 08/01/2018
- * Time: 17:53
+ * Time: 17:58
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
 
+use App\Http\Controllers\Controller;
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\ArticleService;
+use App\Services\V1\PositionWordService;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class PositionWordController extends Controller
 {
-
     private $json_mapper;
-    private $article_service;
+    private $word_position_service;
 
     public function __construct()
     {
         $this->json_mapper = new JsonMapper();
-        $this->article_service = new ArticleService();
+        $this->word_position_service = new PositionWordService();
     }
 
     /**
@@ -37,6 +37,6 @@ class ArticleController extends Controller
         $raw_data = $this->json_mapper->json_mapper($request->all());
 
         // Return the appropriate message to client
-        return $this->parse($raw_data,$this->article_service);
+        return $this->parse($raw_data,$this->word_position_service);
     }
 }

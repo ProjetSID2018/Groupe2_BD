@@ -5,9 +5,11 @@
  * Date: 08/01/2018
  * Time: 18:09
  */
-namespace App\Services;
+namespace App\Services\V1;
 
-use App\Persistence\AuthorRepository;
+
+
+use App\Persistence\V1\AuthorRepository;
 
 class AuthorService
 {

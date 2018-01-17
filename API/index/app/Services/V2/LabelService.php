@@ -5,9 +5,10 @@
  * Date: 09/01/2018
  * Time: 14:40
  */
-namespace App\Services;
+namespace App\Services\V2;
 
-use App\Persistence\LabelRepository;
+use App\Persistence\V2\LabelRepository;
+use App\Services\Service;
 
 class LabelService implements  Service
 {
@@ -23,7 +24,9 @@ class LabelService implements  Service
         $repository_response=array();
 
         if(is_string($data['label'])) {
-            array_push($repository_response,$this->belong_repository->store($data['id_article'],$data['label']));
+            array_push($repository_response,$this->belong_repository->store(
+                $data['id_article'],$data['label'],$data['strongest_label'])
+            );
         }
 
         if(is_array($data['label'])) {
@@ -33,7 +36,6 @@ class LabelService implements  Service
                     $data['id_article'],$data['label'][$i],$data['strongest_label'][$i])
                 );
             }
-
         }
 
         return $repository_response;

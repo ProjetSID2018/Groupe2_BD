@@ -18,6 +18,9 @@ Route::prefix('API/index')->group(function () {
     // Semantic group's routes
     Route::patch('semantic', 'SemanticController@store');
 
+    // TF IDF's routes
+    Route::post('tf_idf','TFIDFController@store');
+
     Route::get('test',function() {
         return view('welcome');
     });

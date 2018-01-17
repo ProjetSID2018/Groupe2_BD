@@ -3,27 +3,31 @@
  * Created by PhpStorm.
  * User: Utilisateur
  * Date: 08/01/2018
- * Time: 18:07
+ * Time: 18:08
  */
-namespace App\Persistence;
+namespace App\Persistence\V1;
 use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
 
-class NewspaperRepository extends Repository
+class WordRepository extends Repository
 {
     public function store($data) {
         try {
             // Store in DB the data given
-            DB::select('CALL PNEWSPAPER(?,?,?)',array(
-                $data['name_newspaper'],
-                $data['link_newspaper'],
-                $data['link_logo']
+            DB::select('CALL PWORD(?,?,@id_word)',array(
+                $data['word'],
+                $data['lemma'],
             ));
 
-            $this->response['message'] = "";
+            // Get the output variable from the procedure
+            $results = DB::select('Select @id_word as id_word');
+
+            // Sent the id_word in json format to client
+            $this->response['message'] = ['id_word' =>$results[0]->id_word];
             $this->response['code'] =  Repository::$CREATION_SUCCEEDED;
 
             return $this->response;
+
         } catch (\PDOException $e) {
             // Get the pdo exception message
             $this->response['message'] = $e->getMessage();

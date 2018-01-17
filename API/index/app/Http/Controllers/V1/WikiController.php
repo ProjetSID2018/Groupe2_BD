@@ -2,27 +2,27 @@
 /**
  * Created by PhpStorm.
  * User: Utilisateur
- * Date: 08/01/2018
- * Time: 17:53
+ * Date: 09/01/2018
+ * Time: 10:35
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
 
+use App\Http\Controllers\Controller;
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\AuthorService;
+use App\Services\V1\WikiService;
 use Illuminate\Http\Request;
 
-class AuthorController extends Controller
+class WikiController extends Controller
 {
-
     private $json_mapper;
-    private $author_service;
+    private $wiki_service;
 
     public function __construct()
     {
         $this->json_mapper = new JsonMapper();
-        $this->author_service = new AuthorService();
+        $this->wiki_service = new WikiService();
     }
 
     /**
@@ -37,6 +37,6 @@ class AuthorController extends Controller
         $raw_data = $this->json_mapper->json_mapper($request->all());
 
         // Return the appropriate message to client
-        return $this->parse($raw_data,$this->author_service);
+        return $this->parse($raw_data,$this->wiki_service);
     }
 }

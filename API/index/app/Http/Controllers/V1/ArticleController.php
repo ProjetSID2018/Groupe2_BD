@@ -3,26 +3,27 @@
  * Created by PhpStorm.
  * User: Utilisateur
  * Date: 08/01/2018
- * Time: 17:57
+ * Time: 17:53
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
 
+use App\Http\Controllers\Controller;
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\WordService;
+use App\Services\V1\ArticleService;
 use Illuminate\Http\Request;
 
-class WordController extends Controller
+class ArticleController extends Controller
 {
 
     private $json_mapper;
-    private $word_service;
+    private $article_service;
 
     public function __construct()
     {
         $this->json_mapper = new JsonMapper();
-        $this->word_service = new WordService();
+        $this->article_service = new ArticleService();
     }
 
     /**
@@ -37,6 +38,6 @@ class WordController extends Controller
         $raw_data = $this->json_mapper->json_mapper($request->all());
 
         // Return the appropriate message to client
-        return $this->parse($raw_data,$this->word_service);
+        return $this->parse($raw_data,$this->article_service);
     }
 }

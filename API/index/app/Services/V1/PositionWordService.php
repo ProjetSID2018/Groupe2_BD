@@ -5,9 +5,10 @@
  * Date: 08/01/2018
  * Time: 18:10
  */
-namespace App\Services;
+namespace App\Services\V1;
 
-use App\Persistence\PositionWordRepository;
+
+use App\Persistence\V2\PositionWordRepository;
 
 class PositionWordService
 {

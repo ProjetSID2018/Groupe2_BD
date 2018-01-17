@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\JsonMapper\JsonMapper;
-use App\Services\NewspaperService;
+use App\Services\V1\NewspaperService;
 use Illuminate\Http\Request;
 
 

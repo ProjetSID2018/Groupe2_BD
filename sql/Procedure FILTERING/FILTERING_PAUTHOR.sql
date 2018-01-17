@@ -16,5 +16,4 @@ CREATE PROCEDURE FILTERING_PAUTHOR (IN v_id_article INT, IN v_surname_author VAR
 
 		INSERT INTO realize(id_author, id_article) VALUES(v_id_author, v_id_article);
 
-		COMMIT;
 	END/

@@ -50,6 +50,4 @@ CREATE PROCEDURE FILTERING_PPOSITION_WORD (IN v_position INT, IN v_word VARCHAR(
 		INSERT INTO position_word (position,title,id_word,id_entity,id_pos_tag,id_article)
 		VALUES (v_position, v_title, v_id_word, v_id_entity, v_id_pos_tag, v_id_article);
 
-		COMMIT ;
-
 	END/

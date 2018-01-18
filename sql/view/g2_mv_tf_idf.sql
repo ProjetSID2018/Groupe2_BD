@@ -4,7 +4,7 @@
 #-- Structure of the materialized view 'mv_tf_idf'
 
 CREATE TABLE IF NOT EXISTS `mv_tf_idf` (
-  `id_article` int(11) NOT NULL,
+  `id_article` VARCHAR(50) NOT NULL,
   `id_lemma` int(11) NOT NULL,
   `tf_idf` float NOT NULL,
   PRIMARY KEY (`id_article`,`id_lemma`),

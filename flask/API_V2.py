@@ -11,13 +11,6 @@ import MySQLdb
 app = Flask(__name__) # we are using this variable to use the flask microframework
 api = Api(app)
 
-# MySQL configurations
-servername = "localhost"
-username = "root"
-passwordDB = "sidiots"
-databasename = "index"
-
-db = MySQLdb.connect(user = username, passwd = passwordDB, host = servername, db = databasename)
 
 @app.route("/filtering/", strict_slashes = False, methods = ['POST'])
 def filtering():
@@ -26,16 +19,18 @@ def filtering():
 		date_publication = article['article']['date_publication']
 		list_surname_author = article['article']['surname_author']
 		name_newspaper = article['article']['name_newspaper']
-		try : 
-			id_article = call_pfiltering_article(date_publication, name_newspaper)
+		id_article = article['id_art']
+
+		try :
+			call_pfiltering_article(date_publication, name_newspaper, id_article)
 		except : 
 			print('Unable to insert article')
 
 		for surname_author in list_surname_author:
-			try : 
-				call_pauthor(id_article, surname_author)
-			except : 
-				print('Author alerady exist.')
+			#try : 
+			call_pauthor(id_article, surname_author)
+			#except : 
+			#	print('Author alerady exist.')
 
 		for position_word in article['position_word'] : 
 			lemma = position_word['lemma']
@@ -45,41 +40,34 @@ def filtering():
 			position = position_word['position']
 			word = position_word['word']
 			
-			try : 
-				call_pfiltering_position_word(position, word, lemma, title, pos_tag, type_entity, id_article)
-			except: 
-				print('Unable to insert word')
+			#try : 
+			call_pfiltering_position_word(position, word, lemma, title, pos_tag, type_entity, id_article)
+			#except: 
+			#	print('Unable to insert word')
 			
 	
 	result = json.dumps([[{"message":{"id_article" : id_article}}]])
+	query = "COMMIT ;"
+	cursor.execute(query)
 
-	
 	return result
-	
 
 
-def call_pfiltering_article(date_publication, name_newspaper):
-	query = "CALL FILTERING_PARTICLE('" + date_publication + "','" + name_newspaper + "',@vid_article);"
-	cursor = db.cursor()
+
+def call_pfiltering_article(date_publication, name_newspaper, id_article):
+	query = "CALL FILTERING_PARTICLE('" + date_publication + "','" + name_newspaper + "','" + id_article + "');"
+	#cursor = db.cursor()
 	cursor.execute(query)
-
-	query = "SELECT @vid_article as id_article;"
-	cursor = db.cursor()
-	cursor.execute(query)
-	id_article = cursor.fetchall()[0][0]
-
-	return id_article
-
 
 
 def call_pfiltering_position_word(position, word, lemma, title, pos_tag, type_entity, id_article):
 	query = "CALL FILTERING_PPOSITION_WORD(" + str(position) + ",'" + word + "','" + lemma + "',"  + str(title) + ",'" + pos_tag + "','" + type_entity  + "'," + str(id_article) + ");"
-	cursor = db.cursor()
+	#cursor = db.cursor()
 	cursor.execute(query)
 
 def call_pauthor(id_article, surname_author):
 	query = "CALL FILTERING_PAUTHOR(" + str(id_article) + ",'" + surname_author + "');"
-	cursor = db.cursor()
+	#cursor = db.cursor()
 	cursor.execute(query)
 
 
@@ -89,7 +77,7 @@ def semantic():
 	data = request.get_json()
 	for article in data :
 		
-		id_article = str(article['article']['id_article'])
+		id_article = str(article['article']['id_hash'])
 		
 		rate_positivity = str(article['article']['rate_positivity'])
 		
@@ -144,27 +132,27 @@ def semantic():
 
 def call_psemantic_article(id_article,rate_positivity,rate_negativity,rate_joy,rate_fear,rate_sadness,rate_angry,rate_surprise,rate_disgust,rate_subjectivity,is_positive):
 	query = "CALL SEMANTIC_PARTICLE(" + id_article  + "," + rate_positivity  + "," + rate_negativity  + "," + rate_joy  + "," +  rate_fear  + "," +  rate_sadness  + "," + rate_angry  + "," + rate_surprise  + "," +  rate_disgust  + "," +  rate_subjectivity  + "," +  is_positive + ");"
-	cursor = db.cursor()
+	#cursor = db.cursor()
 	print(cursor.execute(query))
 
 
 def call_psemantic_pword(id_article, position, word, file_wiki):
 	query = "CALL SEMANTIC_PWORD(" + id_article + "," + position + ",'" + word + "','" + file_wiki + "');"
 	print(query)
-	cursor = db.cursor()
+	#cursor = db.cursor()
 	print(cursor.execute(query))
 
 def call_psemantic_psynonym(id_article, position, synonym):
 	query = "CALL SEMANTIC_PSYNONYM(" + id_article + "," + position + ",'" + synonym +"');"
 	print(query)
-	cursor = db.cursor()
+	#cursor = db.cursor()
 	print(cursor.execute(query))
 
 @app.route("/label/", strict_slashes = False, methods = ['POST'])
 def label():
 	data = request.get_json()
 	for article in data :
-		id_article = str(article['id_article'])
+		id_article = str(article['id_hash'])
 		list_label = article['label']
 		list_strongest_label = article['strongest_label']
 
@@ -182,9 +170,22 @@ def label():
 def call_pbelong(id_article, label, strongest_label):
 	query = "CALL PBELONG(" + id_article +",'"+ label +"',"+ strongest_label + ");"
 	print(query)
-	cursor = db.cursor()
+	#cursor = db.cursor()
 	print(cursor.execute(query))
 
 if __name__ == '__main__':
+
+	# MySQL configurations
+	#servername = "localhost"
+	#username = "DBIndex_user"
+	#passwordDB = "password_DBIndex_user"
+	#databasename = "DBIndex"
+	servername = "localhost"
+	username = "root"
+	passwordDB = "sidiots"
+	databasename = "DBIndex"
+
+	db = MySQLdb.connect(user = username, passwd = passwordDB, host = servername, db = databasename)
+	cursor = db.cursor()
 	#app.run(host="localhost", port = 5005, debug = True)
-	app.run(host="0.0.0.0", port=5005, threaded=True, debug=True)
+	app.run(host="localhost", port=5005, threaded=True, debug=True)

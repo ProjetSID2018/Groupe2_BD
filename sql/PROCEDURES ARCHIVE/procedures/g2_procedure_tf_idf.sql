@@ -5,7 +5,7 @@
 
 DROP PROCEDURE IF EXISTS update_mv_tf_idf;
 DELIMITER |
-CREATE PROCEDURE `update_mv_tf_idf`(IN v_id_article INT(11), IN v_lemma VARCHAR(25), IN v_tf_idf FLOAT(11))
+CREATE PROCEDURE `update_mv_tf_idf`(IN v_id_article VARCHAR(50), IN v_lemma VARCHAR(25), IN v_tf_idf FLOAT(11))
 BEGIN
 	DECLARE v_id_lemma INT(11);
     DECLARE v_test_tf_idf FLOAT(11);

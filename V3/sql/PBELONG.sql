@@ -1,5 +1,6 @@
 DROP PROCEDURE IF EXISTS PBELONG;
-DELIMITER |
+DELIMITER /
+
 CREATE PROCEDURE PBELONG (IN v_id_article VARCHAR(50), IN v_label VARCHAR(25),IN v_strongest_label BOOLEAN)
 BEGIN
 
@@ -18,6 +19,6 @@ BEGIN
 
     INSERT INTO belong(id_article,id_label,strongest_label) VALUES(v_id_article , v_id_label, v_strongest_label);
 
-END|         
+END/    
 
 DELIMITER ;

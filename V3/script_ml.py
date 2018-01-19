@@ -14,7 +14,7 @@ def label(data, cursor):
 
  
 		list_label = article['label']
-		list_strongest_label = str(article['strongest_label'])
+		list_strongest_label = article['strongest_label']
 
 		for i in range(len(list_label)):
 			strongest_label = list_strongest_label[i]
